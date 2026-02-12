@@ -1,0 +1,261 @@
+"use client"
+
+import type React from "react"
+
+import { useState } from "react"
+import Image from "next/image"
+import { ChevronLeft, ChevronRight, X, Instagram, Music, Share2 } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Dialog, DialogContent } from "@/components/ui/dialog"
+import QROverlayEditor from "./profile/qr-overlay-editor"
+
+interface Photo {
+  id: string
+  url: string
+  caption: string
+}
+
+interface PhotoSlideshowWithSharingProps {
+  photos: Photo[]
+  user: any
+  isOwnProfile: boolean
+  currentUser: any
+}
+
+export default function PhotoSlideshowWithSharing({
+  photos,
+  user,
+  isOwnProfile,
+  currentUser,
+}: PhotoSlideshowWithSharingProps) {
+  const [selectedPhoto, setSelectedPhoto] = useState<number | null>(null)
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [showQREditor, setShowQREditor] = useState(false)
+  const [selectedPlatform, setSelectedPlatform] = useState<"instagram" | "tiktok">("instagram")
+  const [photoForSharing, setPhotoForSharing] = useState<Photo | null>(null)
+
+  const openSlideshow = (index: number) => {
+    setCurrentIndex(index)
+    setSelectedPhoto(index)
+  }
+
+  const closeSlideshow = () => {
+    setSelectedPhoto(null)
+  }
+
+  const nextPhoto = () => {
+    setCurrentIndex((prev) => (prev + 1) % photos.length)
+  }
+
+  const prevPhoto = () => {
+    setCurrentIndex((prev) => (prev - 1 + photos.length) % photos.length)
+  }
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "ArrowRight") nextPhoto()
+    if (e.key === "ArrowLeft") prevPhoto()
+    if (e.key === "Escape") closeSlideshow()
+  }
+
+  const handlePlatformShare = (photo: Photo, platform: "instagram" | "tiktok") => {
+    setPhotoForSharing(photo)
+    setSelectedPlatform(platform)
+    setShowQREditor(true)
+  }
+
+  // Only show sharing features if user is logged in and viewing their own profile
+  const canShare = currentUser && isOwnProfile
+
+  return (
+    <>
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+        {photos.map((photo, index) => (
+          <div key={photo.id} className="relative cursor-pointer group" onClick={() => openSlideshow(index)}>
+            <Image
+              src={photo.url || "/placeholder.svg?height=200&width=200"}
+              alt={photo.caption}
+              width={200}
+              height={200}
+              className="w-full h-48 object-cover rounded-lg transition-transform group-hover:scale-105"
+            />
+
+            {/* Hover overlay with sharing options for own profile */}
+            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-colors rounded-lg flex items-center justify-center">
+              <div className="opacity-0 group-hover:opacity-100 transition-opacity">
+                {canShare ? (
+                  <div className="flex flex-col gap-2">
+                    <Button
+                      size="sm"
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        handlePlatformShare(photo, "instagram")
+                      }}
+                      className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white"
+                    >
+                      <Instagram className="w-4 h-4 mr-1" />
+                      Instagram
+                    </Button>
+                    <Button
+                      size="sm"
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        handlePlatformShare(photo, "tiktok")
+                      }}
+                      className="bg-black hover:bg-gray-800 text-white"
+                    >
+                      <Music className="w-4 h-4 mr-1" />
+                      TikTok
+                    </Button>
+                  </div>
+                ) : (
+                  <div className="bg-white/90 rounded-full p-2">
+                    <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                      />
+                    </svg>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {photo.caption && <p className="text-sm text-gray-600 mt-2 line-clamp-2">{photo.caption}</p>}
+          </div>
+        ))}
+      </div>
+
+      {/* Slideshow Modal */}
+      <Dialog open={selectedPhoto !== null} onOpenChange={closeSlideshow}>
+        <DialogContent className="max-w-4xl w-full h-[80vh] p-0" onKeyDown={handleKeyDown}>
+          <div className="relative w-full h-full bg-black rounded-lg overflow-hidden">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="absolute top-4 right-4 z-10 bg-black/50 hover:bg-black/70 text-white"
+              onClick={closeSlideshow}
+            >
+              <X className="w-4 h-4" />
+            </Button>
+
+            {photos.length > 1 && (
+              <>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/70 text-white"
+                  onClick={prevPhoto}
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </Button>
+
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-black/50 hover:bg-black/70 text-white"
+                  onClick={nextPhoto}
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </Button>
+              </>
+            )}
+
+            {/* Sharing buttons for own profile in slideshow */}
+            {canShare && selectedPhoto !== null && (
+              <div className="absolute top-4 left-4 z-10 flex gap-2">
+                <Button
+                  size="sm"
+                  onClick={() => handlePlatformShare(photos[currentIndex], "instagram")}
+                  className="bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white"
+                >
+                  <Instagram className="w-4 h-4 mr-1" />
+                  Share
+                </Button>
+                <Button
+                  size="sm"
+                  onClick={() => handlePlatformShare(photos[currentIndex], "tiktok")}
+                  className="bg-black hover:bg-gray-800 text-white"
+                >
+                  <Music className="w-4 h-4 mr-1" />
+                  Share
+                </Button>
+              </div>
+            )}
+
+            {selectedPhoto !== null && (
+              <div className="w-full h-full flex items-center justify-center">
+                <Image
+                  src={photos[currentIndex].url || "/placeholder.svg?height=600&width=800"}
+                  alt={photos[currentIndex].caption}
+                  width={800}
+                  height={600}
+                  className="max-w-full max-h-full object-contain"
+                />
+              </div>
+            )}
+
+            {selectedPhoto !== null && photos[currentIndex].caption && (
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                <p className="text-white text-center">{photos[currentIndex].caption}</p>
+              </div>
+            )}
+
+            {photos.length > 1 && (
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+                {photos.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`w-2 h-2 rounded-full transition-colors ${
+                      index === currentIndex ? "bg-white" : "bg-white/50"
+                    }`}
+                    onClick={() => setCurrentIndex(index)}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      {/* QR Overlay Editor Modal */}
+      {photoForSharing && canShare && (
+        <QROverlayEditor
+          isOpen={showQREditor}
+          onClose={() => setShowQREditor(false)}
+          photo={photoForSharing}
+          user={user}
+          platform={selectedPlatform}
+        />
+      )}
+
+      {/* Sharing Guidelines for own profile */}
+      {canShare && photos.length > 0 && (
+        <div className="mt-8">
+          <div className="bg-gradient-to-r from-purple-50 to-pink-50 border border-purple-200 rounded-lg p-6">
+            <div className="flex items-start space-x-4">
+              <div className="bg-purple-100 p-3 rounded-full">
+                <Share2 className="w-6 h-6 text-purple-600" />
+              </div>
+              <div>
+                <h4 className="font-medium text-purple-900 mb-2">Share Your Photos with QR Codes</h4>
+                <p className="text-sm text-purple-700 mb-3">
+                  <strong>Boost your content visibility!</strong> Share your photos to Instagram or TikTok with custom
+                  QR code overlays. When people scan the QR code on your social media posts, they'll be directed here to
+                  vote for your content on Maxopolis.
+                </p>
+                <div className="bg-white/50 p-3 rounded-lg">
+                  <p className="text-xs text-purple-600 font-medium">
+                    💡 <strong>How it works:</strong> Hover over any photo and click Instagram or TikTok to add a custom
+                    QR code overlay, then share directly to your social media with pre-filled captions and hashtags!
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  )
+}
