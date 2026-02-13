@@ -328,9 +328,9 @@ export default function NetflixStyleHome({ users, currentUser }: NetflixStyleHom
 
   const faqItems = [
     {
-      question: "What is Maxopolis?",
+      question: "What is FitClub?",
       answer:
-        "Maxopolis is the ultimate fitness community platform where athletes showcase their physiques, share knowledge, and inspire each other to reach new heights. It's a place where fitness enthusiasts can vote for their favorite athletes and connect with like-minded individuals.",
+        "FitClub is the ultimate fitness community platform where athletes showcase their physiques, share knowledge, and inspire each other to reach new heights. It's a place where fitness enthusiasts can vote for their favorite athletes and connect with like-minded individuals.",
     },
     {
       question: "How does voting work?",
@@ -340,17 +340,17 @@ export default function NetflixStyleHome({ users, currentUser }: NetflixStyleHom
     {
       question: "Can I share my photos on social media?",
       answer:
-        "Yes! When you upload photos to your profile, you can share them to Instagram and TikTok with custom QR code overlays. These QR codes allow viewers to scan and vote for your content directly on Maxopolis.",
+        "Yes! When you upload photos to your profile, you can share them to Instagram and TikTok with custom QR code overlays. These QR codes allow viewers to scan and vote for your content directly on FitClub.",
     },
     {
-      question: "Is Maxopolis free to use?",
+      question: "Is FitClub free to use?",
       answer:
-        "Yes, Maxopolis is completely free to use. You can create a profile, upload photos, vote for other athletes, and participate in the community without any cost.",
+        "Yes, FitClub is completely free to use. You can create a profile, upload photos, vote for other athletes, and participate in the community without any cost.",
     },
     {
       question: "How do I join the community?",
       answer:
-        "Simply click the 'Join Maxopolis' button and create your profile. Choose your fitness category, upload your photos, and start connecting with the community!",
+        "Simply click the 'Join FitClub' button and create your profile. Choose your fitness category, upload your photos, and start connecting with the community!",
     },
     {
       question: "What fitness categories are available?",
@@ -409,7 +409,7 @@ export default function NetflixStyleHome({ users, currentUser }: NetflixStyleHom
                 </span>
               </h1>
               <p className="text-2xl text-gray-200 mb-8 leading-relaxed">
-                Join the Maxopolis community, post your progress, get votes, and redeem points for real fitness gear.
+                Join the FitClub community, post your progress, get votes, and redeem points for real fitness gear.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4">
@@ -418,7 +418,7 @@ export default function NetflixStyleHome({ users, currentUser }: NetflixStyleHom
                     size="lg"
                     className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold px-8 py-4 text-lg"
                   >
-                    Join Maxopolis Now
+                    Join FitClub Now
                   </Button>
                 </Link>
                 <Link href="/leaderboard">

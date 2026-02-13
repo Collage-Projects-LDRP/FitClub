@@ -155,7 +155,7 @@ export default function LoginPage() {
             {/* Logo */}
             <motion.div className="text-center" variants={itemVariants}>
               <Link href="/" className="inline-block">
-                <h1 className="text-4xl font-bold text-white mb-2">Maxopolis</h1>
+                <h1 className="text-4xl font-bold text-white mb-2">FitClub</h1>
                 <p className="text-gray-300">Join the fitness community</p>
               </Link>
             </motion.div>
@@ -280,7 +280,7 @@ export default function LoginPage() {
           className="mt-8 text-center text-xs text-gray-400 w-full"
           variants={itemVariants}
         >
-          <p> 2024 Maxopolis. All rights reserved.</p>
+          <p> 2024 FitClub. All rights reserved.</p>
         </motion.footer>
       </div>
     </div>

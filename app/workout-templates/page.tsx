@@ -26,8 +26,8 @@ type ReelTemplate = {
 
 const reelTemplates: ReelTemplate[] = [
   {
-    id: 'maxopolis-before-after',
-    title: 'Maxopolis Before/After',
+    id: 'fitclub-before-after',
+    title: 'FitClub Before/After',
     description: 'Showcase transformations with our signature before/after reveal effect',
     preview: '/before-after.jpg',
     duration: '0:30',
@@ -40,7 +40,7 @@ const reelTemplates: ReelTemplate[] = [
     isNew: true
   },
   {
-    id: 'maxopolis-personal-best',
+    id: 'fitclub-personal-best',
     title: 'Personal Best',
     description: 'Celebrate your fitness achievements and personal records',
     preview: '/personal-best.png',
@@ -53,7 +53,7 @@ const reelTemplates: ReelTemplate[] = [
     isTrending: true
   },
   {
-    id: 'maxopolis-8week-challenge',
+    id: 'fitclub-8week-challenge',
     title: '8-Week Challenge',
     description: 'Document your 8-week transformation journey with our challenge template',
     preview: 'https://images.unsplash.com/photo-1434682881908-b43d0467b798?ixlib=rb-4.0.3&auto=format&fit=crop&w=1287&q=80',
@@ -65,7 +65,7 @@ const reelTemplates: ReelTemplate[] = [
     uses: 2150,
   },
   {
-    id: 'maxopolis-physique',
+    id: 'fitclub-physique',
     title: 'Physique Showcase',
     description: 'Highlight your best angles with our physique showcase template',
     preview: 'https://images.unsplash.com/photo-1535914254981-b5012eebbd15?ixlib=rb-4.0.3&auto=format&fit=crop&w=1287&q=80',
@@ -77,7 +77,7 @@ const reelTemplates: ReelTemplate[] = [
     uses: 1123
   },
   {
-    id: 'maxopolis-squad',
+    id: 'fitclub-squad',
     title: 'Squad Goals',
     description: 'Showcase your training group or fitness community',
     preview: 'https://images.unsplash.com/photo-1594381898411-846e7d193883?ixlib=rb-4.0.3&auto=format&fit=crop&w=1287&q=80',
@@ -90,8 +90,8 @@ const reelTemplates: ReelTemplate[] = [
     isTrending: true
   },
   {
-    id: 'maxopolis-on-reel',
-    title: 'Maxopolis On Reel',
+    id: 'fitclub-on-reel',
+    title: 'FitClub On Reel',
     description: 'Our signature template for engaging fitness content',
     preview: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1287&q=80',
     duration: '0:30',
@@ -104,9 +104,9 @@ const reelTemplates: ReelTemplate[] = [
     isNew: true
   },
   {
-    id: 'maxopolis-event',
+    id: 'fitclub-event',
     title: 'Event Highlights',
-    description: 'Capture the energy of Maxopolis fitness events',
+    description: 'Capture the energy of FitClub fitness events',
     preview: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1287&q=80',
     duration: '0:45',
     category: 'Events',

@@ -27,7 +27,7 @@ export default function AdminLoginPage() {
     if (result.success) {
       toast({
         title: "Admin login successful!",
-        description: "Welcome to Maxopolis Admin Panel",
+        description: "Welcome to FitClub Admin Panel",
       })
       router.push("/admin/dashboard")
     } else {
@@ -49,7 +49,7 @@ export default function AdminLoginPage() {
             <Shield className="w-8 h-8 text-white" />
           </div>
           <CardTitle className="text-3xl font-bold mb-2">Admin Portal</CardTitle>
-          <p className="text-red-100">Maxopolis Administration Panel</p>
+          <p className="text-red-100">FitClub Administration Panel</p>
         </div>
         <CardContent className="p-8">
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -106,7 +106,7 @@ export default function AdminLoginPage() {
             <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Demo Credentials</p>
             <div className="space-y-1">
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                <span className="font-mono font-medium">admin</span> / <span className="font-mono font-medium">maxopolis2024</span>
+                <span className="font-mono font-medium">admin</span> / <span className="font-mono font-medium">fitclub2024</span>
               </p>
             </div>
           </div>

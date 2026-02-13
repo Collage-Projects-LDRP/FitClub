@@ -135,7 +135,7 @@ export default function SharingStep({ onBack, onComplete, selectedTemplate = 'si
   const { beforePhoto, afterPhoto /*, qrCodeUrl, logoUrl*/, reset } = useBeforeAfter();
   // Use fallbacks if these aren't in context
   const qrCodeUrl = '/qr-code.png';
-  const logoUrl = '/maxopolis-logo.png';
+  const logoUrl = '/fitclub-logo.png';
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [copied, setCopied] = useState(false);

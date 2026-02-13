@@ -243,7 +243,7 @@ export default function PhotoSlideshowWithSharing({
                 <p className="text-sm text-purple-700 mb-3">
                   <strong>Boost your content visibility!</strong> Share your photos to Instagram or TikTok with custom
                   QR code overlays. When people scan the QR code on your social media posts, they'll be directed here to
-                  vote for your content on Maxopolis.
+                  vote for your content on FitClub.
                 </p>
                 <div className="bg-white/50 p-3 rounded-lg">
                   <p className="text-xs text-purple-600 font-medium">

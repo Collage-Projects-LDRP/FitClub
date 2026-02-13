@@ -31,7 +31,7 @@ const INTRO_TEMPLATES = [
               transition={{ duration: 0.5 }}
             >
               <Image 
-                src="/maxopolis-logo.png" 
+                src="/fitclub-logo.png" 
                 alt="Logo" 
                 width={120} 
                 height={120} 
@@ -97,7 +97,7 @@ const INTRO_TEMPLATES = [
                 }}
               >
                 <Image 
-                  src="/maxopolis-logo.png" 
+                  src="/fitclub-logo.png" 
                   alt="Logo" 
                   width={100} 
                   height={100} 
@@ -158,7 +158,7 @@ const INTRO_TEMPLATES = [
               }}
             >
               <Image 
-                src="/maxopolis-logo.png" 
+                src="/fitclub-logo.png" 
                 alt="Logo" 
                 width={120} 
                 height={120} 
@@ -196,7 +196,7 @@ const INTRO_TEMPLATES = [
               <div className="text-center p-4 bg-gray-900/80 backdrop-blur-sm rounded-lg border border-gray-700 w-4/5">
                 <div className="mb-4">
                   <Image 
-                    src="/maxopolis-logo.png" 
+                    src="/fitclub-logo.png" 
                     alt="Logo" 
                     width={80} 
                     height={80} 
@@ -204,7 +204,7 @@ const INTRO_TEMPLATES = [
                   />
                 </div>
                 <div className="h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent my-4"></div>
-                <p className="text-gray-300 text-sm">MAXOPOLIS</p>
+                <p className="text-gray-300 text-sm">FITCLUB</p>
               </div>
             </motion.div>
           </div>

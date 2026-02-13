@@ -4,7 +4,7 @@ import { cookies } from "next/headers"
 
 const ADMIN_CREDENTIALS = {
   username: "admin",
-  password: "maxopolis2024",
+  password: "fitclub2024",
 }
 
 export async function adminLogin(username: string, password: string) {

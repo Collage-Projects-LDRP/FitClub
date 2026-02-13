@@ -28,7 +28,7 @@ export default function ProfileImageModal({ src, alt, username }: ProfileImageMo
       try {
         await navigator.share({
           title: `${username}'s Profile`,
-          text: `Check out ${username}'s profile on Maxopolis!`,
+          text: `Check out ${username}'s profile on FitClub!`,
           url: window.location.href,
         })
       } catch (error) {

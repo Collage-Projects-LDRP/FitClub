@@ -296,7 +296,7 @@ const PersonalBestReelCreator = () => {
     {
       id: 'motivational',
       title: 'Rise Up',
-      artist: 'Maxopolis',
+      artist: 'FitClub',
       genre: 'Motivational',
       duration: '2:45',
       coverUrl: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500&h=500&fit=crop',
@@ -305,7 +305,7 @@ const PersonalBestReelCreator = () => {
     {
       id: 'electronic',
       title: 'Neon Dreams',
-      artist: 'Maxopolis',
+      artist: 'FitClub',
       genre: 'Electronic',
       duration: '3:15',
       coverUrl: 'https://images.unsplash.com/photo-1501612780327-45045538702b?w=500&h=500&fit=crop',
@@ -314,7 +314,7 @@ const PersonalBestReelCreator = () => {
     {
       id: 'rock',
       title: 'Mountain High',
-      artist: 'Maxopolis',
+      artist: 'FitClub',
       genre: 'Rock',
       duration: '2:50',
       coverUrl: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500&h=500&fit=crop',
@@ -1166,8 +1166,8 @@ const PersonalBestReelCreator = () => {
                               className="object-contain"
                             />
                             <Image
-                              src="/maxopolis-logo.png"
-                              alt="Maxopolis Logo"
+                              src="/fitclub-logo.png"
+                              alt="FitClub Logo"
                               width={80}
                               height={80}
                               className="object-contain"
@@ -1872,8 +1872,8 @@ const PersonalBestReelCreator = () => {
                               />
                               <div className="w-18 h-18 mb-4 flex items-center justify-center flex-col">Powered by
                               <Image
-                                src="/maxopolis-logo.png" 
-                                alt="Maxopolis Logo"
+                                src="/fitclub-logo.png" 
+                                alt="FitClub Logo"
                                 width={160}
                                 height={160}
                                 className="object-contain"
@@ -2246,8 +2246,8 @@ const PersonalBestReelCreator = () => {
                           />
                           <div className="w-28 h-28 mb-4 flex items-center justify-center flex-col">Powered by
                           <Image
-                            src="/maxopolis-logo.png"
-                            alt="Maxopolis Logo"
+                            src="/fitclub-logo.png"
+                            alt="FitClub Logo"
                             width={120}
                             height={120}
                             className="object-contain"

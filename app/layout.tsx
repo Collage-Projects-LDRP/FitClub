@@ -11,7 +11,7 @@ import { OnboardingProvider } from "@/contexts/OnboardingContext"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Maxopolis - Fitness Community Platform",
+  title: "FitClub - Fitness Community Platform",
   description: "Join the ultimate fitness community. Vote, share, and connect with amazing physiques.",
   generator: "v0.dev",
 }

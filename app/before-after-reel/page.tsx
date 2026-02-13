@@ -68,7 +68,7 @@ const BeforeAfterReelCreator = () => {
     {
       id: 'upbeat',
       title: 'Upbeat Vibes',
-      artist: 'Maxopolis',
+      artist: 'FitClub',
       genre: 'Upbeat',
       duration: '2:30',
       coverUrl: 'https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=500&h=500&fit=crop',
@@ -77,7 +77,7 @@ const BeforeAfterReelCreator = () => {
     {
       id: 'motivational',
       title: 'Rise Up',
-      artist: 'Maxopolis',
+      artist: 'FitClub',
       genre: 'Motivational',
       duration: '2:45',
       coverUrl: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500&h=500&fit=crop',
@@ -86,7 +86,7 @@ const BeforeAfterReelCreator = () => {
     {
       id: 'electronic',
       title: 'Neon Dreams',
-      artist: 'Maxopolis',
+      artist: 'FitClub',
       genre: 'Electronic',
       duration: '3:15',
       coverUrl: 'https://images.unsplash.com/photo-1501612780327-45045538702b?w=500&h=500&fit=crop',
@@ -95,7 +95,7 @@ const BeforeAfterReelCreator = () => {
     {
       id: 'rock',
       title: 'Mountain High',
-      artist: 'Maxopolis',
+      artist: 'FitClub',
       genre: 'Rock',
       duration: '2:50',
       coverUrl: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500&h=500&fit=crop',
@@ -505,8 +505,8 @@ const BeforeAfterReelCreator = () => {
                         <div className="relative w-full h-full flex flex-col items-center justify-center p-4">
                           <div className="w-20 h-20 mb-4 flex items-center justify-center">
                             <Image 
-                              src="/maxopolis-logo.png" 
-                              alt="Maxopolis Logo"
+                              src="/fitclub-logo.png" 
+                              alt="FitClub Logo"
                               width={80}
                               height={80}
                               className="object-contain"
@@ -899,7 +899,7 @@ const BeforeAfterReelCreator = () => {
                               variants={logoVariants[reelAssets.intro.animation] || logoVariants.transform}
                             >
                               <Image 
-                                src="/maxopolis-logo.png" 
+                                src="/fitclub-logo.png" 
                                 alt="Website Logo"
                                 width={120}
                                 height={120}
@@ -1078,7 +1078,7 @@ const BeforeAfterReelCreator = () => {
                               variants={logoVariants[reelAssets.outro.animation] || logoVariants.transform}
                             >
                               <Image 
-                                src="/maxopolis-logo.png" 
+                                src="/fitclub-logo.png" 
                                 alt="Website Logo"
                                 width={120}
                                 height={120}
@@ -1231,7 +1231,7 @@ const BeforeAfterReelCreator = () => {
                           animate="animate"
                         >
                           <Image 
-                            src="/maxopolis-logo.png" 
+                            src="/fitclub-logo.png" 
                             alt="Logo"
                             width={180}
                             height={180}
@@ -1267,7 +1267,7 @@ const BeforeAfterReelCreator = () => {
                             transition={{ duration: 0.6, ease: "easeOut" }}
                           >
                             <Image 
-                              src="/maxopolis-logo.png"
+                              src="/fitclub-logo.png"
                               alt="Logo"
                               width={150}
                               height={50}
@@ -1366,7 +1366,7 @@ const BeforeAfterReelCreator = () => {
                           animate="animate"
                         >
                           <Image 
-                            src="/maxopolis-logo.png" 
+                            src="/fitclub-logo.png" 
                             alt="Logo"
                             width={120}
                             height={120}

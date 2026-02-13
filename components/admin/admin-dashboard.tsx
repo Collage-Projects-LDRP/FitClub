@@ -64,7 +64,7 @@ export default function AdminDashboard() {
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center space-x-2">
               <Shield className="h-8 w-8 text-white" />
-              <h1 className="text-xl font-bold text-white">Maxopolis Admin</h1>
+              <h1 className="text-xl font-bold text-white">FitClub Admin</h1>
             </div>
             <Button 
               onClick={handleLogout} 

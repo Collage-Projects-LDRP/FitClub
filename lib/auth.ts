@@ -18,7 +18,7 @@ export async function getCurrentUser() {
     const user = {
       id: isDemoUser ? userId : Number.parseInt(userId),
       username: username,
-      email: isDemoUser ? `${username}@demo.maxopolis.com` : `${username}@maxopolis.com`,
+      email: isDemoUser ? `${username}@demo.fitclub.com` : `${username}@fitclub.com`,
       isDemo: isDemoUser
     }
 

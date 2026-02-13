@@ -212,7 +212,7 @@ export default function GalleryPage() {
     if (platform === 'download') {
       const a = document.createElement('a')
       a.href = selectedPhoto.url
-      a.download = `maxopolis-share-${Date.now()}.jpg`
+      a.download = `fitclub-share-${Date.now()}.jpg`
       document.body.appendChild(a)
       a.click()
       document.body.removeChild(a)

@@ -214,7 +214,7 @@ export default function TemplateSelectionStep({ onContinue, onBack }: TemplateSe
   const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
   const { beforePhoto, afterPhoto } = useBeforeAfter();
   const qrCodeUrl = '/qr-code.png';
-  const logoUrl = '/maxopolis-logo.png';
+  const logoUrl = '/fitclub-logo.png';
 
   const templates = [
     {

@@ -39,12 +39,12 @@ export default function QROverlayEditor({ isOpen, onClose, imageUrl, platform, o
 
   // Generate platform-specific captions
   const generateCaption = useCallback(() => {
-    const baseText = "Check out my fitness journey on Maxopolis! Scan the QR code to vote for me."
+    const baseText = "Check out my fitness journey on FitClub! Scan the QR code to vote for me."
 
     if (platform === "instagram") {
-      return `${baseText}\n\n#Maxopolis #FitnessVote #ScanToVote #FitnessMotivation #FitnessJourney #BodyBuilding #FitLife`
+      return `${baseText}\n\n#FitClub #FitnessVote #ScanToVote #FitnessMotivation #FitnessJourney #BodyBuilding #FitLife`
     } else {
-      return `${baseText}\n\n#Maxopolis #FitnessVote #TikTokFitness #FitnessTok #BodyBuilding #FitnessMotivation #ScanToVote`
+      return `${baseText}\n\n#FitClub #FitnessVote #TikTokFitness #FitnessTok #BodyBuilding #FitnessMotivation #ScanToVote`
     }
   }, [platform])
 
@@ -62,7 +62,7 @@ export default function QROverlayEditor({ isOpen, onClose, imageUrl, platform, o
   const generateQRCode = useCallback(async () => {
     // Simple QR code generation using a placeholder
     // In a real app, you'd use a proper QR code library
-    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent("https://maxopolis.com/vote/123")}`
+    const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent("https://fitclub.com/vote/123")}`
 
     try {
       const response = await fetch(qrUrl)

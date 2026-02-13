@@ -181,7 +181,7 @@ export default function PhotoGalleryWithSharing({ user }: PhotoGalleryWithSharin
       // Handle download
       const a = document.createElement('a')
       a.href = sharingPhoto.url
-      a.download = `maxopolis-share-${Date.now()}.jpg`
+      a.download = `fitclub-share-${Date.now()}.jpg`
       document.body.appendChild(a)
       a.click()
       document.body.removeChild(a)
@@ -243,7 +243,7 @@ export default function PhotoGalleryWithSharing({ user }: PhotoGalleryWithSharin
         }
         
         // Use the logo image as watermark
-        watermark.src = '/maxopolis-logo.png'
+        watermark.src = '/fitclub-logo.png'
       } else {
         addQRCode()
       }
@@ -374,7 +374,7 @@ export default function PhotoGalleryWithSharing({ user }: PhotoGalleryWithSharin
                     <a href="${shareOptions.platform === 'instagram' ? 'https://www.instagram.com/' : 'https://www.tiktok.com/upload?lang=en'}" target="_blank" class="btn-${shareOptions.platform}" style="text-decoration: none;">
                       <button>Open ${shareOptions.platform.charAt(0).toUpperCase() + shareOptions.platform.slice(1)}</button>
                     </a>
-                    <a href="${finalImage}" download="maxopolis-share-${Date.now()}.jpg">
+                    <a href="${finalImage}" download="fitclub-share-${Date.now()}.jpg">
                       <button class="btn-download">Download Image</button>
                     </a>
                     <button onclick="window.close()">Close</button>
@@ -532,7 +532,7 @@ export default function PhotoGalleryWithSharing({ user }: PhotoGalleryWithSharin
               <h3 className="font-medium text-purple-900 mb-2">Social Media Sharing</h3>
               <p className="text-sm text-purple-700 mb-3">
                 Share your photos to Instagram and TikTok with custom QR code overlays. When people scan the QR code,
-                they'll be taken directly to your Maxopolis profile where they can vote for your content!
+                they'll be taken directly to your FitClub profile where they can vote for your content!
               </p>
               <Button
                 variant="outline"
@@ -640,7 +640,7 @@ export default function PhotoGalleryWithSharing({ user }: PhotoGalleryWithSharin
               // Handle download
               const a = document.createElement('a');
               a.href = sharingPhoto.url;
-              a.download = `maxopolis-share-${Date.now()}.jpg`;
+              a.download = `fitclub-share-${Date.now()}.jpg`;
               document.body.appendChild(a);
               a.click();
               document.body.removeChild(a);
@@ -781,11 +781,11 @@ export default function PhotoGalleryWithSharing({ user }: PhotoGalleryWithSharin
                       onMouseDown={(e) => handleMouseDown(e, 'watermark')}
                     >
                       <img 
-                        src="/maxopolis-logo.png" 
-                        alt="Maxopolis" 
+                        src="/fitclub-logo.png" 
+                        alt="FitClub" 
                         className="w-5 h-5" 
                       />
-                      <span className="text-sm">@maxopolis</span>
+                      <span className="text-sm">@fitclub</span>
                     </div>
                   )}
                 </>

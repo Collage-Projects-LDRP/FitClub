@@ -218,7 +218,7 @@ export default function SocialSharingTest() {
                 </CardHeader>
                 <CardContent className="space-y-2 text-sm text-gray-300">
                   <p>• Custom QR overlay with Instagram-optimized captions</p>
-                  <p>• Hashtags: #Maxopolis #FitnessVote #ScanToVote #FitnessMotivation</p>
+                  <p>• Hashtags: #FitClub #FitnessVote #ScanToVote #FitnessMotivation</p>
                   <p>• Purple/pink gradient styling to match Instagram branding</p>
                   <p>• Redirect to Instagram.com for final posting</p>
                 </CardContent>
@@ -233,7 +233,7 @@ export default function SocialSharingTest() {
                 </CardHeader>
                 <CardContent className="space-y-2 text-sm text-gray-300">
                   <p>• Custom QR overlay with TikTok-optimized captions</p>
-                  <p>• Hashtags: #Maxopolis #FitnessVote #TikTokFitness #FitnessTok</p>
+                  <p>• Hashtags: #FitClub #FitnessVote #TikTokFitness #FitnessTok</p>
                   <p>• Black styling to match TikTok branding</p>
                   <p>• Redirect to TikTok.com for final posting</p>
                 </CardContent>

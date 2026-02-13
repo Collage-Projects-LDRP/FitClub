@@ -6,7 +6,7 @@ import Image from 'next/image';
 import type { Variants, Transition } from 'framer-motion';
 
 // Import the logos - adjust the paths as needed
-const leftLogo = '/maxopolis-logo.png'; // Left side logo
+const leftLogo = '/fitclub-logo.png'; // Left side logo
 const rightLogo = 'https://www.allmaxnutrition.com/cdn/shop/files/logo-white_198x_9f614dcb-81f7-4460-8097-1190cf32eb03_400x.webp?v=1674804703'; // Right side logo
 
 const container: Variants = {

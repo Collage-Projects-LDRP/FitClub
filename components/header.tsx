@@ -210,8 +210,8 @@ export function Header() {
         <div className="container flex h-20 items-center justify-between px-4">
           <Link href="/" className="flex items-center leading-3">
             <Image
-              src="/maxopolis-logo.png"
-              alt="Maxopolis"
+              src="/fitclub-logo.png"
+              alt="FitClub"
               width={160}
               height={160}
               className="h-40 w-40 object-contain filter brightness-0 invert"
@@ -232,8 +232,8 @@ export function Header() {
         {/* Logo - Much Bigger */}
         <Link href="/" className="flex items-center leading-3">
           <Image
-            src="/maxopolis-logo.png"
-            alt="Maxopolis"
+            src="/fitclub-logo.png"
+            alt="FitClub"
             width={200}
             height={200}
             className="h-50 w-50 object-contain "

@@ -82,7 +82,7 @@ const OUTRO_TEMPLATES = [
             >
               <p className="text-white font-medium mb-1">
                 <Image 
-                  src="/maxopolis-logo.png" 
+                  src="/fitclub-logo.png" 
                   alt="Logo" 
                   width={200} 
                   height={200} 
@@ -171,7 +171,7 @@ const OUTRO_TEMPLATES = [
             >
               <p className="text-white font-medium mb-1">
               <Image 
-                  src="/maxopolis-logo.png" 
+                  src="/fitclub-logo.png" 
                   alt="Logo" 
                   width={200} 
                   height={200} 
@@ -257,7 +257,7 @@ const OUTRO_TEMPLATES = [
             >
               <p className="text-white font-medium mb-1">
                 <Image 
-                  src="/maxopolis-logo.png" 
+                  src="/fitclub-logo.png" 
                   alt="Logo" 
                   width={200} 
                   height={200} 

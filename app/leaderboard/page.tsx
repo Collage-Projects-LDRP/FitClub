@@ -312,7 +312,7 @@ export default function LeaderboardPage() {
     country: 'Worldwide',
     votes: 0,
     points: 0,
-    extra: 'Welcome to Maxopolis',
+    extra: 'Welcome to FitClub',
     isNew: true
   })
   const [isScrolled, setIsScrolled] = useState(false)

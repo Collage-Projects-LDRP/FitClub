@@ -193,8 +193,8 @@ export function QRCode({
                 <span className="text-xs text-white/70">POWERED BY</span>
                 <div className="relative w-12 h-3">
                   <Image
-                    src="/maxopolis-logo.png"
-                    alt="Maxopolis"
+                    src="/fitclub-logo.png"
+                    alt="FitClub"
                     fill
                     className="object-contain"
                   />
@@ -213,8 +213,8 @@ export function QRCode({
         {/* Website Logo at Top - Outside Container */}
         <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 w-24 h-6 z-30 flex items-center justify-center">
           <Image
-            src="/maxopolis-logo.png"
-            alt="Powered by Maxopolis"
+            src="/fitclub-logo.png"
+            alt="Powered by FitClub"
             fill
             className="object-contain"
             priority
@@ -371,7 +371,7 @@ export function QRCode({
       />
       <div className="text-center mb-2 text-white flex flex-row items-center justify-center gap-2 w-full">powered by
         <Image
-          src="/maxopolis-logo.png"
+          src="/fitclub-logo.png"
           alt="QR Code"
           width={80}
           height={80}

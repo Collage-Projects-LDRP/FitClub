@@ -99,7 +99,7 @@ export default function WelcomeStep() {
             className="mb-8"
           >
             <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600 mb-4">
-              Welcome to Maxopolis
+              Welcome to FitClub
             </h1>
             <p className="text-lg text-gray-300">
               Your fitness journey starts here

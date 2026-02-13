@@ -36,7 +36,7 @@ export function Footer() {
 
     toast({
       title: "Subscribed!",
-      description: "Thanks for joining the Maxopolis community!",
+      description: "Thanks for joining the FitClub community!",
     })
 
     setEmail("")
@@ -51,8 +51,8 @@ export function Footer() {
           <div className="lg:col-span-1">
             <div className="mb-4">
               <Image
-                src="/maxopolis-logo.png"
-                alt="Maxopolis"
+                src="/fitclub-logo.png"
+                alt="FitClub"
                 width={180}
                 height={40}
                 className="h-8 w-auto brightness-0 invert"
@@ -185,11 +185,11 @@ export function Footer() {
             <div className="space-y-2 text-sm text-gray-400">
               <div className="flex items-center">
                 <Mail className="w-4 h-4 mr-2" />
-                hello@maxopolis.com
+                hello@fitclub.com
               </div>
               <div className="flex items-center">
                 <Phone className="w-4 h-4 mr-2" />
-                1-800-MAXOPOLIS
+                1-800-FITCLUB
               </div>
               <div className="flex items-center">
                 <MapPin className="w-4 h-4 mr-2" />
@@ -202,7 +202,7 @@ export function Footer() {
         <div className="border-t border-gray-800 mt-8 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="text-gray-400 text-sm mb-4 md:mb-0">
-              2024 Maxopolis. All rights reserved. An AllMax Community.
+              2024 FitClub. All rights reserved. An AllMax Community.
             </div>
             <div className="flex space-x-6 text-sm">
               <a href="#" className="text-gray-400 hover:text-white transition-colors">

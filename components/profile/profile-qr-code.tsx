@@ -29,7 +29,7 @@ export default function ProfileQRCode({ userId, username }: ProfileQRCodeProps) 
         <p className="text-sm text-gray-600 mb-2">
           <strong>Vote for {username}</strong>
         </p>
-        <p className="text-xs text-gray-500">Scan this QR code to quickly vote for this athlete on Maxopolis</p>
+        <p className="text-xs text-gray-500">Scan this QR code to quickly vote for this athlete on FitClub</p>
       </CardContent>
     </Card>
   )
