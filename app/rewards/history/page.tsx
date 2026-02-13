@@ -8,9 +8,11 @@ export const metadata: Metadata = {
   description: "View your reward point history and claimed rewards",
 }
 
+export const dynamic = "force-dynamic"
+
 export default async function RewardHistoryPage() {
   const user = await getCurrentUser()
-  
+
   if (!user) {
     return (
       <div className="container py-8 text-center">
@@ -22,7 +24,7 @@ export default async function RewardHistoryPage() {
   // Get transactions and claimed rewards for the user
   let transactions = getUserTransactionHistory(user.id, 50) // Get up to 50 transactions
   let claimedRewards = getUserRewards(user.id)
-  
+
   // If no transactions found for the user, add some test data
   if (transactions.length === 0) {
     const now = new Date()
@@ -109,7 +111,7 @@ export default async function RewardHistoryPage() {
       }
     ]
   }
-  
+
   // If no claimed rewards found, add some test data
   if (claimedRewards.length === 0) {
     const now = new Date()
@@ -142,6 +144,6 @@ export default async function RewardHistoryPage() {
       } as any
     ]
   }
-  
+
   return <RewardHistoryClient user={user} transactions={transactions} claimedRewards={claimedRewards} />
 }

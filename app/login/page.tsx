@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Alert, AlertDescription } from "@/components/ui/alert"
@@ -71,7 +72,7 @@ export default function LoginPage() {
 
         // Redirect to dashboard after successful login
         router.push("/dashboard")
-        
+
         // Force a full page reload to ensure all components get the updated auth state
         window.location.href = "/dashboard"
       } else {
@@ -96,10 +97,10 @@ export default function LoginPage() {
         // Store user info in localStorage
         localStorage.setItem("user_id", result.userId)
         localStorage.setItem("username", demoUsername)
-        
+
         // Force a storage event to notify other tabs and trigger auth state update
         localStorage.setItem('auth_timestamp', Date.now().toString())
-        
+
         // Redirect to dashboard and force a full page reload
         window.location.href = "/dashboard"
       } else {
@@ -143,10 +144,10 @@ export default function LoginPage() {
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1975&q=80')] bg-cover bg-center opacity-10"></div>
       </div>
-      
+
       <div className="min-h-screen flex flex-col items-center justify-center p-4">
         <div className="w-full max-w-md space-y-6">
-          <motion.div 
+          <motion.div
             className="w-full space-y-6"
             initial="hidden"
             animate="show"
@@ -155,13 +156,18 @@ export default function LoginPage() {
             {/* Logo */}
             <motion.div className="text-center" variants={itemVariants}>
               <Link href="/" className="inline-block">
-                <h1 className="text-4xl font-bold text-white mb-2">FitClub</h1>
-                <p className="text-gray-300">Join the fitness community</p>
+                <Image
+                  src="/fitclub-logo.png"
+                  alt="FitClub"
+                  width={180}
+                  height={180}
+                  className="mx-auto"
+                />
               </Link>
             </motion.div>
 
             {/* Login Form */}
-            <motion.div 
+            <motion.div
               className="bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-xl p-8 space-y-6 border border-gray-700"
               variants={itemVariants}
             >
@@ -178,8 +184,8 @@ export default function LoginPage() {
                 </motion.div>
               )}
 
-              <motion.form 
-                onSubmit={handleSubmit} 
+              <motion.form
+                onSubmit={handleSubmit}
                 className="space-y-4"
                 variants={itemVariants}
               >
@@ -201,8 +207,8 @@ export default function LoginPage() {
                   </div>
                 </div>
 
-                <Button 
-                  type="submit" 
+                <Button
+                  type="submit"
                   className="w-full py-6 text-base font-medium"
                   disabled={isLoading}
                 >
@@ -259,13 +265,13 @@ export default function LoginPage() {
                   ))}
                 </div>
 
-                <motion.div 
+                <motion.div
                   className="mt-6 text-center text-sm text-gray-300"
                   variants={itemVariants}
                 >
                   Don't have an account?{" "}
-                  <Link 
-                    href="/signup" 
+                  <Link
+                    href="/signup"
                     className="text-blue-400 hover:text-blue-300 font-medium transition-colors"
                   >
                     Sign up
@@ -276,7 +282,7 @@ export default function LoginPage() {
           </motion.div>
         </div>
 
-        <motion.footer 
+        <motion.footer
           className="mt-8 text-center text-xs text-gray-400 w-full"
           variants={itemVariants}
         >

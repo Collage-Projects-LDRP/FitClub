@@ -54,8 +54,8 @@ export function Footer() {
                 src="/fitclub-logo.png"
                 alt="FitClub"
                 width={180}
-                height={40}
-                className="h-8 w-auto brightness-0 invert"
+                height={180}
+                className="h-12 w-auto"
               />
             </div>
             <p className="text-gray-400 mb-4">
