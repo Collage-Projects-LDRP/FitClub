@@ -30,7 +30,7 @@ const AuthContext = createContext<{
 }>({
   user: null,
   isLoading: true,
-  refreshAuth: async () => {},
+  refreshAuth: async () => { },
 });
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
@@ -62,7 +62,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     // Listen for storage events (cross-tab)
     window.addEventListener('storage', handleStorageChange);
-    
+
     // Clean up
     return () => {
       window.removeEventListener('storage', handleStorageChange);
@@ -155,7 +155,7 @@ export function Header() {
   const router = useRouter()
   const pathname = usePathname()
   const { user, isLoading, refreshAuth } = useAuth()
-  
+
   // Refresh auth state when path changes
   useEffect(() => {
     refreshAuth()
@@ -292,14 +292,14 @@ export function Header() {
               </Link>
             </Button>
           ))}
-          
+
           {/* Rewards Dropdown */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button
                 variant="ghost"
                 size="sm"
-                // className={`text-gray-300 hover:text-purple-400 ${pathname.startsWith('/rewards') ? 'text-purple-400' : ''}`}
+              // className={`text-gray-300 hover:text-purple-400 ${pathname.startsWith('/rewards') ? 'text-purple-400' : ''}`}
               >
                 <Gift className="w-4 h-4 mr-1" />
                 Rewards
@@ -324,18 +324,18 @@ export function Header() {
 
         {/* Search Bar */}
         <form onSubmit={handleSearch} className="hidden md:flex items-center space-x-2 flex-1 max-w-sm mx-6">
-              <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                <Input
-                  type="search"
-                  placeholder="Search users..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-10 bg-gray-800 border-gray-600 text-white placeholder-gray-400"
-                />
-              </div>
-            </form>
-        
+          <div className="relative flex-1">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+            <Input
+              type="search"
+              placeholder="Search users..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10 bg-gray-800 border-gray-600 text-white placeholder-gray-400"
+            />
+          </div>
+        </form>
+
 
         {/* Right Side Actions */}
         <div className="flex items-center space-x-4">
@@ -358,14 +358,14 @@ export function Header() {
                     <p className="text-xs text-muted-foreground truncate">{user?.email || ''}</p>
                   </div>
                 </div>
-                
+
                 <DropdownMenuItem asChild>
                   <Link href="/dashboard" className="w-full cursor-pointer">
                     <User className="mr-2 h-4 w-4" />
                     <span>Dashboard</span>
                   </Link>
                 </DropdownMenuItem>
-                
+
                 <DropdownMenuItem asChild>
                   <Link href="/messages" className="w-full cursor-pointer">
                     <MessageCircle className="mr-2 h-4 w-4" />
@@ -381,27 +381,13 @@ export function Header() {
                 </DropdownMenuItem>
 
                 <DropdownMenuItem asChild>
-                  <Link href="/social-share" className="w-full cursor-pointer">
-                    <Share2 className="mr-2 h-4 w-4" />
-                    <span>Social-Share</span>
-                  </Link>
-                </DropdownMenuItem>
-
-                <DropdownMenuItem asChild>
-                  <Link href="/workout-templates" className="w-full cursor-pointer">
-                    <Plus className="mr-2 h-4 w-4" />
-                    <span>Create and Share</span>
-                  </Link>
-                </DropdownMenuItem>
-                
-                <DropdownMenuItem asChild>
                   <Link href="/rewards/history" className="w-full cursor-pointer">
                     <Gift className="mr-2 h-4 w-4" />
                     <span>My Rewards</span>
                   </Link>
                 </DropdownMenuItem>
-                
-                <DropdownMenuItem 
+
+                <DropdownMenuItem
                   onClick={handleLogout}
                   disabled={isLoggingOut}
                   className="w-full cursor-pointer text-destructive focus:text-destructive"
@@ -489,7 +475,7 @@ export function Header() {
                       </Link>
                     )
                   })}
-                  
+
                   {/* Mobile Rewards Section */}
                   <div className="border-t border-gray-700 my-2 pt-2">
                     <div className="px-3 py-1 text-sm font-medium text-gray-300">Rewards</div>
