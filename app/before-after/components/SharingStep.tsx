@@ -5,6 +5,7 @@ import { Share2, Download, Instagram, ArrowLeft, Copy } from 'lucide-react';
 import { useState } from 'react';
 import { useBeforeAfter } from '@/contexts/BeforeAfterContext';
 import Image from 'next/image';
+import { Logo } from '@/components/logo';
 
 interface SharingStepProps {
   onBack: () => void;
@@ -39,8 +40,8 @@ function SliderTemplatePreview({ beforePhoto, afterPhoto, qrCodeUrl, logoUrl }: 
         </div>
       </div>
       <div className="absolute bottom-0 left-0 right-0 p-3 bg-gray-900/80 border-t border-gray-700 flex items-center justify-between">
-        <div className="relative w-32 h-10">
-          {logoUrl && <Image src={logoUrl} alt="Logo" fill className="object-contain" />}
+        <div className="flex-1">
+          <Logo size="sm" isClickable={false} showUnderline={false} />
         </div>
         {qrCodeUrl && (
           <div className="relative w-16 h-16 bg-white p-1 rounded border border-gray-600">
@@ -56,7 +57,7 @@ function SideBySideTemplatePreview({ beforePhoto, afterPhoto, qrCodeUrl, logoUrl
   return (
     <div className="relative w-full aspect-[9/16] bg-gray-900 rounded-2xl overflow-hidden flex flex-col">
       <div className="p-4 bg-gradient-to-r from-gray-900 to-gray-800 flex justify-center items-center">
-        <div className="relative w-64 h-12">{logoUrl && <Image src={logoUrl} alt="Logo" fill className="object-contain" />}</div>
+        <Logo size="md" isClickable={false} />
       </div>
       <div className="flex-1 grid grid-cols-2 gap-0.5 bg-gray-800 p-1">
         <div className="relative bg-gray-900 overflow-hidden">
@@ -101,7 +102,9 @@ function FadeTemplatePreview({ beforePhoto, afterPhoto, qrCodeUrl, logoUrl }: an
   return (
     <div className="relative w-full aspect-[9/16] bg-gray-900 rounded-2xl overflow-hidden flex flex-col">
       <div className="p-4 flex justify-between items-center border-b border-gray-700">
-        <div className="relative w-24 h-8">{logoUrl && <Image src={logoUrl} alt="Logo" fill className="object-contain" />}</div>
+        <div className="flex items-center">
+          <Logo size="sm" isClickable={false} showUnderline={false} />
+        </div>
         <div className="relative w-8 h-8">{qrCodeUrl && <Image src={qrCodeUrl} alt="QR Code" fill className="object-contain" />}</div>
       </div>
       <div className="relative flex-1 flex flex-col overflow-hidden">
@@ -142,7 +145,7 @@ export default function SharingStep({ onBack, onComplete, selectedTemplate = 'si
   const [isDownloading, setIsDownloading] = useState(false);
 
   const handlePlayPause = () => setIsPlaying(!isPlaying);
-  
+
   const handleCopyLink = async () => {
     try {
       await navigator.clipboard.writeText(window.location.href);
@@ -166,7 +169,7 @@ export default function SharingStep({ onBack, onComplete, selectedTemplate = 'si
     switch (selectedTemplate) {
       case 'slider':
         return (
-          <SliderTemplatePreview 
+          <SliderTemplatePreview
             beforePhoto={beforePhoto}
             afterPhoto={afterPhoto}
             qrCodeUrl={qrCodeUrl}
@@ -175,7 +178,7 @@ export default function SharingStep({ onBack, onComplete, selectedTemplate = 'si
         );
       case 'fade':
         return (
-          <FadeTemplatePreview 
+          <FadeTemplatePreview
             beforePhoto={beforePhoto}
             afterPhoto={afterPhoto}
             qrCodeUrl={qrCodeUrl}
@@ -185,7 +188,7 @@ export default function SharingStep({ onBack, onComplete, selectedTemplate = 'si
       case 'side-by-side':
       default:
         return (
-          <SideBySideTemplatePreview 
+          <SideBySideTemplatePreview
             beforePhoto={beforePhoto}
             afterPhoto={afterPhoto}
             qrCodeUrl={qrCodeUrl}
@@ -208,9 +211,9 @@ export default function SharingStep({ onBack, onComplete, selectedTemplate = 'si
       <div className="lg:w-1/2 xl:w-3/5 flex flex-col">
         <div className="flex-1 bg-gray-900/50 rounded-2xl p-6">
           <h2 className="text-2xl font-bold text-white mb-6">Share Your Transformation</h2>
-          
+
           <div className="space-y-4 max-w-md mx-auto">
-            <div 
+            <div
               className="bg-gray-800/50 rounded-xl p-4 hover:bg-gray-800/70 transition-colors cursor-pointer"
               onClick={handleShareInstagram}
             >
@@ -226,7 +229,7 @@ export default function SharingStep({ onBack, onComplete, selectedTemplate = 'si
               </div>
             </div>
 
-            <div 
+            <div
               className="bg-gray-800/50 rounded-xl p-4 hover:bg-gray-800/70 transition-colors cursor-pointer"
               onClick={handleShareTikTok}
             >
@@ -242,7 +245,7 @@ export default function SharingStep({ onBack, onComplete, selectedTemplate = 'si
               </div>
             </div>
 
-            <div 
+            <div
               className="bg-gray-800/50 rounded-xl p-4 hover:bg-gray-800/70 transition-colors cursor-pointer"
               onClick={handleCopyLink}
             >
@@ -259,21 +262,21 @@ export default function SharingStep({ onBack, onComplete, selectedTemplate = 'si
             </div>
           </div>
 
-          <div 
-              className="bg-gray-800/50 rounded-xl p-4 hover:bg-gray-800/70 transition-colors cursor-pointer mt-4"
-              onClick={handleDownload}
-            >
-              <div className="flex items-center space-x-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br from-green-600 to-emerald-500 flex items-center justify-center">
-                  <Download className="w-6 h-6 text-white" />
-                </div>
-                <div className="flex-1">
-                  <h3 className="font-medium text-white">Download</h3>
-                  <p className="text-sm text-gray-400">Save to your device</p>
-                </div>
-                <ArrowLeft className="w-5 h-5 text-gray-400 transform rotate-180" />
+          <div
+            className="bg-gray-800/50 rounded-xl p-4 hover:bg-gray-800/70 transition-colors cursor-pointer mt-4"
+            onClick={handleDownload}
+          >
+            <div className="flex items-center space-x-4">
+              <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br from-green-600 to-emerald-500 flex items-center justify-center">
+                <Download className="w-6 h-6 text-white" />
               </div>
+              <div className="flex-1">
+                <h3 className="font-medium text-white">Download</h3>
+                <p className="text-sm text-gray-400">Save to your device</p>
+              </div>
+              <ArrowLeft className="w-5 h-5 text-gray-400 transform rotate-180" />
             </div>
+          </div>
 
           {/* Action Buttons */}
           <div className="mt-6 pt-6 border-t border-gray-800 space-y-3">

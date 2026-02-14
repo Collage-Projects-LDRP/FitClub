@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react';
 import Image from 'next/image';
 import { useBeforeAfter } from '@/contexts/BeforeAfterContext';
+import { Logo } from '@/components/logo';
 
 // Base template component with consistent styling
 const TemplateCard = ({
@@ -75,8 +76,8 @@ const SliderTemplate = ({ beforePhoto, afterPhoto, qrCodeUrl, logoUrl }: any) =>
     {/* Footer with Logo and QR Code */}
     <div className="p-3 border-t border-gray-700 bg-gray-900">
       <div className="flex justify-between items-center">
-        <div className="w-32 h-16 relative">
-          <Image src={logoUrl} alt="Logo" layout="fill" objectFit="contain" />
+        <div className="flex-1">
+          <Logo size="sm" isClickable={false} showUnderline={false} />
         </div>
         <div className="w-16 h-16 relative bg-white p-1 rounded border border-gray-600">
           <Image src={qrCodeUrl} alt="QR Code" layout="fill" objectFit="contain" />
@@ -91,14 +92,7 @@ const SideBySideTemplate = ({ beforePhoto, afterPhoto, qrCodeUrl, logoUrl }: any
   <div className="relative w-full h-full bg-gray-900 aspect-[9/16] flex flex-col">
     {/* Header with Large Logo */}
     <div className="p-4 bg-gradient-to-r from-gray-900 to-gray-800 flex justify-center items-center">
-      <div className="w-80 h-20 relative">
-        <Image
-          src={logoUrl}
-          alt="Logo"
-          layout="fill"
-          objectFit="contain"
-        />
-      </div>
+      <Logo size="md" isClickable={false} />
     </div>
 
     <div className="flex-1 grid grid-cols-2 gap-0.5 bg-gray-800 p-1">
@@ -151,8 +145,8 @@ const FadeTemplate = ({ beforePhoto, afterPhoto, qrCodeUrl, logoUrl }: any) => (
   <div className="relative w-full h-full bg-gray-900 aspect-[9/16] flex flex-col">
     {/* Header with Logo and QR Code */}
     <div className="p-4 flex justify-between items-center border-b border-gray-700">
-      <div className="w-24 h-8 relative">
-        <Image src={logoUrl} alt="Logo" layout="fill" objectFit="contain" />
+      <div className="flex items-center">
+        <Logo size="sm" isClickable={false} showUnderline={false} />
       </div>
       <div className="w-8 h-8 relative">
         <Image src={qrCodeUrl} alt="QR Code" layout="fill" objectFit="contain" />

@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import Image from 'next/image';
+import { Logo } from '@/components/logo';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -271,14 +271,8 @@ export default function WelcomeSignup() {
               >
                 <div className="relative">
                   <div className="absolute -inset-4 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full opacity-75 blur-lg group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-                  <div className="relative bg-gray-900 p-1 rounded-full">
-                    <Image
-                      src="/fitclub-logo.png"
-                      alt="FitClub"
-                      width={64}
-                      height={64}
-                      className="p-2"
-                    />
+                  <div className="relative bg-gray-900 p-4 rounded-full">
+                    <Logo size="sm" isClickable={false} showUnderline={false} />
                   </div>
                 </div>
               </motion.div>
@@ -385,14 +379,8 @@ export default function WelcomeSignup() {
                   <div className="absolute inset-0 bg-gradient-to-r from-purple-600/30 to-pink-600/30"></div>
                   <CardHeader className="relative z-10">
                     <div className="flex justify-center mb-2">
-                      <div className="bg-gradient-to-r from-purple-600 to-pink-600 p-2 rounded-lg">
-                        <Image
-                          src="/fitclub-logo.png"
-                          alt="FitClub"
-                          width={32}
-                          height={32}
-                          className="brightness-0 invert p-1"
-                        />
+                      <div className="bg-transparent p-2 rounded-lg">
+                        <Logo size="sm" isClickable={false} showUnderline={false} />
                       </div>
                     </div>
                     <CardTitle className="text-2xl font-bold text-center text-white">Create Your Account</CardTitle>

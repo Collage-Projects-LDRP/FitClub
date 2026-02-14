@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import type { Variants, Transition } from 'framer-motion';
+import { Logo } from '@/components/logo';
 
 // Import the logos - adjust the paths as needed
 const leftLogo = '/fitclub-logo.png'; // Left side logo
@@ -99,19 +100,13 @@ export function IntroAnimation({ onComplete }: { onComplete: () => void }) {
 
           {/* Left Logo */}
           <motion.div
-            className="absolute left-4 md:left-8 -translate-y-1/2 w-64 h-64 md:w-64 md:h-64 z-20"
+            className="absolute left-4 md:left-8 -translate-y-1/2 z-20"
             variants={item}
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
           >
-            <Image
-              src={leftLogo}
-              alt="Left Logo"
-              fill
-              className="object-contain object-left"
-              priority
-            />
+            <Logo size="lg" isClickable={false} showUnderline={false} />
           </motion.div>
 
           {/* Center Content */}

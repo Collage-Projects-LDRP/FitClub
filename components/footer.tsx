@@ -22,6 +22,7 @@ import {
   Heart,
   Shield,
 } from "lucide-react"
+import { Logo } from "@/components/logo"
 
 export function Footer() {
   const [email, setEmail] = useState("")
@@ -50,13 +51,7 @@ export function Footer() {
           {/* Brand Section */}
           <div className="lg:col-span-1">
             <div className="mb-4">
-              <Image
-                src="/fitclub-logo.png"
-                alt="FitClub"
-                width={180}
-                height={180}
-                className="h-12 w-auto"
-              />
+              <Logo size="sm" />
             </div>
             <p className="text-gray-400 mb-4">
               The ultimate fitness community where athletes showcase their physiques, share knowledge, and inspire each

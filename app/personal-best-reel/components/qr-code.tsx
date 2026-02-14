@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Logo } from '@/components/logo';
 
 // Product images mapping using actual product images from the database
 const PRODUCT_IMAGES = {
@@ -191,14 +191,7 @@ export function QRCode({
             >
               <div className="flex items-center justify-center gap-2">
                 <span className="text-xs text-white/70">POWERED BY</span>
-                <div className="relative w-12 h-3">
-                  <Image
-                    src="/fitclub-logo.png"
-                    alt="FitClub"
-                    fill
-                    className="object-contain"
-                  />
-                </div>
+                <Logo size="sm" isClickable={false} showUnderline={false} textClassName="text-[10px]" />
               </div>
             </motion.div>
           </motion.div>
@@ -211,14 +204,8 @@ export function QRCode({
     return (
       <div className="relative w-full h-full">
         {/* Website Logo at Top - Outside Container */}
-        <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 w-24 h-6 z-30 flex items-center justify-center">
-          <Image
-            src="/fitclub-logo.png"
-            alt="Powered by FitClub"
-            fill
-            className="object-contain"
-            priority
-          />
+        <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 z-30 flex items-center justify-center">
+          <Logo size="sm" isClickable={false} showUnderline={false} />
         </div>
 
         <motion.div
@@ -370,14 +357,7 @@ export function QRCode({
         priority
       />
       <div className="text-center mb-2 text-white flex flex-row items-center justify-center gap-2 w-full">powered by
-        <Image
-          src="/fitclub-logo.png"
-          alt="QR Code"
-          width={80}
-          height={80}
-          className="rounded"
-          priority
-        />
+        <Logo size="sm" isClickable={false} showUnderline={false} />
       </div>
       <div className="flex flex-row items-center justify-center gap-6 w-full">
         {/* QR Code */}

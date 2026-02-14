@@ -9,6 +9,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Play, Pause, PlayCircle, Upload, Image as ImageIcon, Music, Sparkles, Film, X, Share2, Download, ImagePlus, MessageSquare, Instagram, QrCode as QrCodeIcon } from "lucide-react";
 import Image from "next/image";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Logo } from '@/components/logo';
 import { IntroAnimation, OutroAnimation, ComparisonAnimation } from "./components/reel-animation";
 import { QRCode, QRCodePreview } from "./components/qr-code";
 
@@ -16,10 +17,10 @@ const BeforeAfterReelCreator = () => {
   const [activeTab, setActiveTab] = useState('intro');
   const [showIntro, setShowIntro] = useState(true);
   const [animationKey, setAnimationKey] = useState(0);
-  
+
   // Get user's photos from the dashboard
   const { photos: userPhotos, loading: photosLoading } = useUserPhotos();
-  
+
   // Define the gallery photo type
   type GalleryPhoto = {
     id: string;
@@ -104,8 +105,8 @@ const BeforeAfterReelCreator = () => {
   ];
 
   const [reelAssets, setReelAssets] = useState({
-    intro: { 
-      type: 'default' as const, 
+    intro: {
+      type: 'default' as const,
       url: '/default-intro.mp4',
       bgColor: 'from-gray-800 to-gray-900',
       animation: undefined as string | undefined,
@@ -116,8 +117,8 @@ const BeforeAfterReelCreator = () => {
     },
     before: { type: 'upload' as 'upload' | 'gallery', url: '' },
     after: { type: 'upload' as 'upload' | 'gallery', url: '' },
-    outro: { 
-      type: 'default' as 'default' | 'custom', 
+    outro: {
+      type: 'default' as 'default' | 'custom',
       url: '',
       bgColor: 'from-gray-800 to-gray-900',
       animation: undefined as string | undefined,
@@ -126,14 +127,14 @@ const BeforeAfterReelCreator = () => {
       color: '',
       icon: undefined as React.ReactNode
     },
-    music: { 
+    music: {
       id: '',
-      title: 'No Music Selected', 
-      artist: 'Select a track below', 
+      title: 'No Music Selected',
+      artist: 'Select a track below',
       genre: '',
       duration: '0:00',
       coverUrl: '/placeholder-music.jpg',
-      audioUrl: '' 
+      audioUrl: ''
     },
   });
 
@@ -149,25 +150,29 @@ const BeforeAfterReelCreator = () => {
   const introOptions = [
     {
       id: 'transform',
-      subtitle: 'Down to Up Annimation',
+      title: 'Transform',
+      subtitle: 'Down to Up Animation',
       icon: <Sparkles className="w-4 h-4" />,
       color: 'from-purple-500 to-pink-500'
     },
     {
       id: 'progress',
-      subtitle: 'Small to Big Annimation',
+      title: 'Progress',
+      subtitle: 'Small to Big Animation',
       icon: <PlayCircle className="w-4 h-4" />,
       color: 'from-blue-500 to-cyan-500'
     },
     {
       id: 'before_after',
-      subtitle: 'Left to Right Annimation',
+      title: 'Journey',
+      subtitle: 'Left to Right Animation',
       icon: <Film className="w-4 h-4" />,
       color: 'from-green-500 to-teal-500'
     },
     {
       id: 'custom',
-      subtitle: 'Big to Small Annimation',
+      title: 'Custom',
+      subtitle: 'Big to Small Animation',
       icon: <Upload className="w-4 h-4" />,
       color: 'from-yellow-500 to-orange-500'
     }
@@ -207,7 +212,7 @@ const BeforeAfterReelCreator = () => {
       color: 'from-red-500 to-pink-500'
     }
   ];
-  
+
   // Animation variants for the intro options
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -219,20 +224,20 @@ const BeforeAfterReelCreator = () => {
       }
     }
   } as const;
-  
+
   // Enhanced animation variants for logo in each intro option
   const logoVariants: Record<string, any> = {
     transform: {
-      initial: { 
-        y: '100%', 
-        scale: 0.5, 
-        opacity: 0 
+      initial: {
+        y: '100%',
+        scale: 0.5,
+        opacity: 0
       },
-      animate: { 
+      animate: {
         y: 0,
         scale: [0.5, 1.2, 1], // Scale up then settle
         opacity: 1,
-        transition: { 
+        transition: {
           type: 'spring',
           stiffness: 400,
           damping: 18,
@@ -250,7 +255,7 @@ const BeforeAfterReelCreator = () => {
       },
       hover: {
         scale: 1.1,
-        transition: { 
+        transition: {
           duration: 0.3,
           type: 'spring',
           stiffness: 400
@@ -259,7 +264,7 @@ const BeforeAfterReelCreator = () => {
     },
     progress: {
       initial: { y: -30, opacity: 0, scale: 0.8 },
-      animate: { 
+      animate: {
         y: 0,
         opacity: 1,
         scale: 1,
@@ -278,8 +283,8 @@ const BeforeAfterReelCreator = () => {
     },
     before_after: {
       initial: { x: -50, opacity: 0, rotate: -20 },
-      animate: { 
-        x: 0, 
+      animate: {
+        x: 0,
         rotate: 0,
         opacity: 1,
         transition: {
@@ -297,7 +302,7 @@ const BeforeAfterReelCreator = () => {
     },
     custom: {
       initial: { scale: 1.5, opacity: 0, rotate: 0 },
-      animate: { 
+      animate: {
         scale: 1,
         rotate: 0,
         opacity: 1,
@@ -311,7 +316,7 @@ const BeforeAfterReelCreator = () => {
       hover: {
         scale: 1.1,
         rotate: 15,
-        transition: { 
+        transition: {
           duration: 0.3
         }
       }
@@ -330,16 +335,16 @@ const BeforeAfterReelCreator = () => {
       }
     }
   } as const;
-  
+
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
 
   const selectIntro = (option: typeof introOptions[number]) => {
     // First, reset the animation state
     setSelectedOption(null);
-    
+
     // Force animation restart by updating the key
     setAnimationKey(prev => prev + 1);
-    
+
     // Then update the selected option and assets
     setReelAssets(prev => ({
       ...prev,
@@ -353,7 +358,7 @@ const BeforeAfterReelCreator = () => {
         // Don't update bgColor here - it will be handled by the color picker
       }
     }));
-    
+
     // After a small delay, set the selected option to trigger the animation
     setTimeout(() => {
       setSelectedOption(option.id);
@@ -379,7 +384,7 @@ const BeforeAfterReelCreator = () => {
     if (showPreview) {
       // When opening preview, ensure we start from intro
       setCurrentStep(0);
-      
+
       // Clear any existing timeouts
       if (sequenceTimeout) {
         clearTimeout(sequenceTimeout);
@@ -424,7 +429,7 @@ const BeforeAfterReelCreator = () => {
       setIsPlaying(true);
     }
   }, [isPlaying, sequenceTimeout, currentStep, hasFinished]);
-  
+
   // Handle play again
   const handlePlayAgain = useCallback(() => {
     setCurrentStep(0);
@@ -493,24 +498,17 @@ const BeforeAfterReelCreator = () => {
                   <h3 className="text-sm font-medium mb-3 text-gray-300">Intro Style</h3>
                   <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full">
                     {introOptions.map((option) => (
-                      <div 
+                      <div
                         key={option.id}
                         onClick={() => selectIntro(option)}
-                        className={`cursor-pointer transition-all ${
-                          reelAssets.intro.animation === option.id 
-                            ? 'ring-2 ring-blue-500' 
-                            : 'opacity-90 hover:opacity-100 border border-gray-700'
-                        } bg-gray-800 rounded-lg overflow-hidden w-full aspect-[9/16]`}
+                        className={`cursor-pointer transition-all ${reelAssets.intro.animation === option.id
+                          ? 'ring-2 ring-blue-500'
+                          : 'opacity-90 hover:opacity-100 border border-gray-700'
+                          } bg-gray-800 rounded-lg overflow-hidden w-full aspect-[9/16]`}
                       >
                         <div className="relative w-full h-full flex flex-col items-center justify-center p-4">
-                          <div className="w-20 h-20 mb-4 flex items-center justify-center">
-                            <Image 
-                              src="/fitclub-logo.png" 
-                              alt="FitClub Logo"
-                              width={80}
-                              height={80}
-                              className="object-contain"
-                            />
+                          <div className="mb-4 flex items-center justify-center">
+                            <Logo size="sm" isClickable={false} showUnderline={false} />
                           </div>
                           <h4 className="text-white font-medium text-center">{option.title}</h4>
                           <p className="text-white/70 text-sm text-center mt-1">{option.subtitle}</p>
@@ -524,13 +522,13 @@ const BeforeAfterReelCreator = () => {
                     ))}
                   </div>
                 </div>
-                
+
                 {/* Background Color Section */}
                 <div className="mt-8">
                   <h3 className="text-sm font-medium mb-3 text-gray-300">Background Color</h3>
                   <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
                     {colorOptions.map((color, index) => (
-                      <div 
+                      <div
                         key={index}
                         onClick={() => setReelAssets(prev => ({
                           ...prev,
@@ -539,9 +537,8 @@ const BeforeAfterReelCreator = () => {
                             bgColor: color.value
                           }
                         }))}
-                        className={`h-12 rounded-md cursor-pointer transition-all ${
-                          reelAssets.intro.bgColor === color.value ? 'ring-2 ring-offset-2 ring-offset-gray-900 ring-white' : ''
-                        } ${color.bg}`}
+                        className={`h-12 rounded-md cursor-pointer transition-all ${reelAssets.intro.bgColor === color.value ? 'ring-2 ring-offset-2 ring-offset-gray-900 ring-white' : ''
+                          } ${color.bg}`}
                         title={color.name}
                       />
                     ))}
@@ -551,7 +548,7 @@ const BeforeAfterReelCreator = () => {
             </div>
           </div>
         );
-      
+
       case 'before':
         return (
           <div className="space-y-6">
@@ -559,7 +556,7 @@ const BeforeAfterReelCreator = () => {
               <h3 className="text-lg font-medium">Add Before Photo</h3>
               <p className="text-sm text-gray-400">Select an image from your gallery or upload a new one</p>
             </div>
-            
+
             <div className="space-y-3">
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 {photosLoading ? (
@@ -569,7 +566,7 @@ const BeforeAfterReelCreator = () => {
                   ))
                 ) : (
                   galleryPhotos.map((photo) => (
-                    <div 
+                    <div
                       key={photo.id}
                       onClick={() => {
                         if (photo.isUpload) {
@@ -577,19 +574,18 @@ const BeforeAfterReelCreator = () => {
                         } else {
                           setReelAssets(prev => ({
                             ...prev,
-                            before: { 
-                              ...prev.before, 
+                            before: {
+                              ...prev.before,
                               url: photo.url,
                               type: 'gallery'
                             }
                           }));
                         }
                       }}
-                      className={`group relative aspect-[9/16] rounded-xl overflow-hidden cursor-pointer transition-all duration-300 ${
-                        !photo.isUpload && reelAssets.before.url === photo.url 
-                          ? 'ring-2 ring-blue-500 ring-offset-2 ring-offset-gray-900 transform scale-[1.02]' 
-                          : 'hover:scale-[1.02] hover:shadow-lg'
-                      }`}
+                      className={`group relative aspect-[9/16] rounded-xl overflow-hidden cursor-pointer transition-all duration-300 ${!photo.isUpload && reelAssets.before.url === photo.url
+                        ? 'ring-2 ring-blue-500 ring-offset-2 ring-offset-gray-900 transform scale-[1.02]'
+                        : 'hover:scale-[1.02] hover:shadow-lg'
+                        }`}
                     >
                       {photo.isUpload ? (
                         <div className="absolute inset-0 border-2 border-dashed border-gray-500 rounded-xl flex flex-col items-center justify-center p-4 hover:border-blue-500 transition-colors bg-gray-900/50">
@@ -599,8 +595,8 @@ const BeforeAfterReelCreator = () => {
                       ) : (
                         <div className="relative w-full h-full">
                           <div className="absolute inset-0 bg-gray-800">
-                            <img 
-                              src={photo.url} 
+                            <img
+                              src={photo.url}
                               alt={photo.label || 'Gallery photo'}
                               className="w-full h-full object-cover"
                             />
@@ -637,7 +633,7 @@ const BeforeAfterReelCreator = () => {
               <h3 className="text-lg font-medium">Add After Photo</h3>
               <p className="text-sm text-gray-400">Select an image from your gallery or upload a new one</p>
             </div>
-            
+
             <div className="space-y-3">
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 {photosLoading ? (
@@ -647,7 +643,7 @@ const BeforeAfterReelCreator = () => {
                   ))
                 ) : (
                   galleryPhotos.map((photo) => (
-                    <div 
+                    <div
                       key={`after-${photo.id}`}
                       onClick={() => {
                         if (photo.isUpload) {
@@ -655,19 +651,18 @@ const BeforeAfterReelCreator = () => {
                         } else {
                           setReelAssets(prev => ({
                             ...prev,
-                            after: { 
-                              ...prev.after, 
+                            after: {
+                              ...prev.after,
                               url: photo.url,
                               type: 'gallery'
                             }
                           }));
                         }
                       }}
-                      className={`group relative aspect-[9/16] rounded-xl overflow-hidden cursor-pointer transition-all duration-300 ${
-                        !photo.isUpload && reelAssets.after.url === photo.url 
-                          ? 'ring-2 ring-green-500 ring-offset-2 ring-offset-gray-900 transform scale-[1.02]' 
-                          : 'hover:scale-[1.02] hover:shadow-lg'
-                      }`}
+                      className={`group relative aspect-[9/16] rounded-xl overflow-hidden cursor-pointer transition-all duration-300 ${!photo.isUpload && reelAssets.after.url === photo.url
+                        ? 'ring-2 ring-green-500 ring-offset-2 ring-offset-gray-900 transform scale-[1.02]'
+                        : 'hover:scale-[1.02] hover:shadow-lg'
+                        }`}
                     >
                       {photo.isUpload ? (
                         <div className="absolute inset-0 border-2 border-dashed border-gray-500 rounded-xl flex flex-col items-center justify-center p-4 hover:border-green-500 transition-colors bg-gray-900/50">
@@ -677,8 +672,8 @@ const BeforeAfterReelCreator = () => {
                       ) : (
                         <div className="relative w-full h-full">
                           <div className="absolute inset-0 bg-gray-800">
-                            <img 
-                              src={photo.url} 
+                            <img
+                              src={photo.url}
                               alt={photo.label || 'Gallery photo'}
                               className="w-full h-full object-cover"
                             />
@@ -707,14 +702,14 @@ const BeforeAfterReelCreator = () => {
             </div>
           </div>
         );
-      
+
       case 'music':
         return (
           <div className="space-y-4">
             <h3 className="text-lg font-medium">Add Music</h3>
             <div className="space-y-2">
               {musicTracks.map((track) => (
-                <button 
+                <button
                   key={track.id}
                   onClick={() => setReelAssets(prev => ({
                     ...prev,
@@ -728,11 +723,10 @@ const BeforeAfterReelCreator = () => {
                       audioUrl: track.audioUrl
                     }
                   }))}
-                  className={`w-full p-4 rounded-lg border transition-colors text-left flex items-center gap-3 ${
-                    reelAssets.music.id === track.id
-                      ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20 dark:border-blue-700'
-                      : 'border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800/50'
-                  }`}
+                  className={`w-full p-4 rounded-lg border transition-colors text-left flex items-center gap-3 ${reelAssets.music.id === track.id
+                    ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20 dark:border-blue-700'
+                    : 'border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800/50'
+                    }`}
                 >
                   <div className="relative h-12 w-12 rounded-md overflow-hidden flex-shrink-0">
                     {track.coverUrl ? (
@@ -770,7 +764,7 @@ const BeforeAfterReelCreator = () => {
             </div>
           </div>
         );
-      
+
       case 'outro':
         return (
           <div className="space-y-6">
@@ -778,12 +772,12 @@ const BeforeAfterReelCreator = () => {
               <h3 className="text-sm font-medium text-gray-300">Outro Style</h3>
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full">
                 {outroOptions.map((option) => (
-                  <div 
+                  <div
                     key={option.id}
                     onClick={() => setReelAssets(prev => ({
-                      ...prev, 
-                      outro: { 
-                        ...prev.outro, 
+                      ...prev,
+                      outro: {
+                        ...prev.outro,
                         animation: option.id,
                         title: option.title === 'Thank You' ? 'THANKS FOR WATCHING' : option.title.toUpperCase(),
                         subtitle: option.subtitle === 'Call to action' ? 'SUBSCRIBE FOR MORE' : option.subtitle.toUpperCase(),
@@ -791,11 +785,10 @@ const BeforeAfterReelCreator = () => {
                         color: option.color
                       }
                     }))}
-                    className={`cursor-pointer transition-all ${
-                      reelAssets.outro.animation === option.id 
-                        ? 'scale-105' 
-                        : 'opacity-80 hover:opacity-100'
-                    }`}
+                    className={`cursor-pointer transition-all ${reelAssets.outro.animation === option.id
+                      ? 'scale-105'
+                      : 'opacity-80 hover:opacity-100'
+                      }`}
                   >
                     <div className={`
                       bg-gray-800 p-1 rounded-lg 
@@ -807,8 +800,8 @@ const BeforeAfterReelCreator = () => {
                           <div className="absolute inset-0 bg-white/5 rounded-lg flex items-center justify-center">
                             {React.cloneElement(option.icon, { className: 'w-8 h-8 text-white/30' })}
                           </div>
-                          <QRCodePreview 
-                            qrCodePath={option.qrCode} 
+                          <QRCodePreview
+                            qrCodePath={option.qrCode}
                             className="scale-75"
                           />
                         </div>
@@ -820,24 +813,23 @@ const BeforeAfterReelCreator = () => {
                 ))}
               </div>
             </div>
-            
+
             <div className="space-y-3">
               <h3 className="text-sm font-medium text-gray-300">Background Color</h3>
               <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
                 {colorOptions.map((color, index) => (
-                  <div 
+                  <div
                     key={index}
                     onClick={() => setReelAssets(prev => ({
                       ...prev,
-                      outro: { 
-                        ...prev.outro, 
+                      outro: {
+                        ...prev.outro,
                         bgColor: color.value,
                         color: color.value // Also update the text color to match
                       }
                     }))}
-                    className={`relative h-12 rounded-lg overflow-hidden cursor-pointer transition-transform ${
-                      reelAssets.outro.bgColor === color.value ? 'ring-2 ring-white ring-offset-2 ring-offset-gray-900 scale-105' : 'hover:scale-105'
-                    }`}
+                    className={`relative h-12 rounded-lg overflow-hidden cursor-pointer transition-transform ${reelAssets.outro.bgColor === color.value ? 'ring-2 ring-white ring-offset-2 ring-offset-gray-900 scale-105' : 'hover:scale-105'
+                      }`}
                   >
                     <div className={`absolute inset-0 ${color.bg} flex items-center justify-center`}>
                     </div>
@@ -847,7 +839,7 @@ const BeforeAfterReelCreator = () => {
             </div>
           </div>
         );
-      
+
       default:
         return null;
     }
@@ -884,22 +876,22 @@ const BeforeAfterReelCreator = () => {
                     {activeTab === 'intro' && (
                       <div className={`w-full aspect-[9/16] relative rounded-lg overflow-hidden bg-gradient-to-br ${reelAssets.intro.bgColor}`}>
                         {reelAssets.intro.animation ? (
-                          <motion.div 
+                          <motion.div
                             className="absolute inset-0 flex flex-col items-center justify-center p-4"
                             variants={containerVariants}
                             initial="hidden"
                             animate="visible"
                             key={`preview-${reelAssets.intro.animation}-${animationKey}`}
                           >
-                            <motion.div 
+                            <motion.div
                               className="relative w-32 h-32 flex items-center justify-center z-10"
                               initial="initial"
                               animate="animate"
                               whileHover="hover"
                               variants={logoVariants[reelAssets.intro.animation] || logoVariants.transform}
                             >
-                              <Image 
-                                src="/fitclub-logo.png" 
+                              <Image
+                                src="/fitclub-logo.png"
                                 alt="Website Logo"
                                 width={120}
                                 height={120}
@@ -920,8 +912,8 @@ const BeforeAfterReelCreator = () => {
                           </div>
                         )}
                         {reelAssets.intro.url ? (
-                          <video 
-                            src={reelAssets.intro.url} 
+                          <video
+                            src={reelAssets.intro.url}
                             className="absolute inset-0 w-full h-full object-cover"
                             autoPlay
                             loop
@@ -937,7 +929,7 @@ const BeforeAfterReelCreator = () => {
                         )}
                       </div>
                     )}
-                    
+
                     {activeTab === 'before' && (
                       <div className="w-full relative">
                         {reelAssets.before.url ? (
@@ -947,9 +939,9 @@ const BeforeAfterReelCreator = () => {
                             </h3>
                             <div className="relative w-full max-w-2xl mx-auto">
                               <div className="relative w-full h-0 pb-[177.78%] bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-lg overflow-hidden">
-                                <img 
-                                  src={reelAssets.before.url} 
-                                  alt="Before preview" 
+                                <img
+                                  src={reelAssets.before.url}
+                                  alt="Before preview"
                                   className="absolute inset-0 w-full h-full object-cover"
                                 />
                                 <div className="absolute bottom-0 left-0 right-0 z-10 bg-black/70 text-white py-3 text-center font-bold text-base md:text-lg">
@@ -978,9 +970,9 @@ const BeforeAfterReelCreator = () => {
                             </h3>
                             <div className="relative w-full max-w-2xl mx-auto">
                               <div className="relative w-full h-0 pb-[177.78%] bg-gradient-to-br from-green-50 to-green-100 dark:from-green-900/20 dark:to-green-800/20 rounded-lg overflow-hidden">
-                                <img 
-                                  src={reelAssets.after.url} 
-                                  alt="After preview" 
+                                <img
+                                  src={reelAssets.after.url}
+                                  alt="After preview"
                                   className="absolute inset-0 w-full h-full object-cover"
                                 />
                                 <div className="absolute bottom-0 left-0 right-0 z-10 bg-black/70 text-white py-3 text-center font-bold text-base md:text-lg">
@@ -999,7 +991,7 @@ const BeforeAfterReelCreator = () => {
                         )}
                       </div>
                     )}
-                    
+
                     {activeTab === 'music' && (
                       <div className="w-full flex flex-col items-center p-6">
                         <div className="relative w-full max-w-xs">
@@ -1017,7 +1009,7 @@ const BeforeAfterReelCreator = () => {
                               </div>
                             )}
                             {/* Play/Pause Button */}
-                            <button 
+                            <button
                               className="absolute inset-0 m-auto w-16 h-16 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-all"
                               onClick={() => {
                                 // Toggle play/pause logic would go here
@@ -1027,7 +1019,7 @@ const BeforeAfterReelCreator = () => {
                               <Play className="h-8 w-8 text-white ml-1" />
                             </button>
                           </div>
-                          
+
                           {/* Track Info */}
                           <div className="text-center">
                             <h3 className="text-lg font-medium text-white truncate">
@@ -1042,12 +1034,12 @@ const BeforeAfterReelCreator = () => {
                               </span>
                             )}
                           </div>
-                          
+
                           {/* Progress Bar */}
                           <div className="mt-6 space-y-2">
                             <div className="h-1 w-full bg-gray-700 rounded-full overflow-hidden">
-                              <div 
-                                className="h-full bg-blue-500 rounded-full" 
+                              <div
+                                className="h-full bg-blue-500 rounded-full"
                                 style={{ width: '30%' }} // This would be dynamic in a real player
                               />
                             </div>
@@ -1059,26 +1051,26 @@ const BeforeAfterReelCreator = () => {
                         </div>
                       </div>
                     )}
-                    
+
                     {activeTab === 'outro' && (
                       <div className={`w-full aspect-[9/16] relative rounded-lg overflow-hidden bg-gradient-to-br ${reelAssets.outro.bgColor || 'from-gray-800 to-gray-900'}`}>
                         {reelAssets.outro.animation ? (
-                          <motion.div 
+                          <motion.div
                             className="absolute inset-0 flex flex-col items-center justify-center p-4"
                             variants={containerVariants}
                             initial="hidden"
                             animate="visible"
                             key={`outro-${reelAssets.outro.animation}-${animationKey}`}
                           >
-                            <motion.div 
+                            <motion.div
                               className="relative w-32 h-32 flex items-center justify-center z-10"
                               initial="initial"
                               animate="animate"
                               whileHover="hover"
                               variants={logoVariants[reelAssets.outro.animation] || logoVariants.transform}
                             >
-                              <Image 
-                                src="/fitclub-logo.png" 
+                              <Image
+                                src="/fitclub-logo.png"
                                 alt="Website Logo"
                                 width={120}
                                 height={120}
@@ -1086,14 +1078,14 @@ const BeforeAfterReelCreator = () => {
                                 priority
                               />
                             </motion.div>
-                            
-                            <motion.div 
+
+                            <motion.div
                               className="text-center mt-6 w-full"
                               initial={{ opacity: 0, y: 20 }}
                               animate={{ opacity: 1, y: 0 }}
                               transition={{ delay: 0.3 }}
                             >
-                              <QRCode 
+                              <QRCode
                                 qrCodePath="/qr-code.png"
                                 title={reelAssets.outro.title}
                                 subtitle={reelAssets.outro.subtitle}
@@ -1122,8 +1114,8 @@ const BeforeAfterReelCreator = () => {
             <div className="lg:w-3/5 h-full">
               <Card className="h-full flex flex-col">
                 <CardHeader>
-                  <Tabs 
-                    value={activeTab} 
+                  <Tabs
+                    value={activeTab}
                     onValueChange={setActiveTab}
                     className="w-full"
                   >
@@ -1157,14 +1149,14 @@ const BeforeAfterReelCreator = () => {
                   </div>
                 </CardContent>
                 <div className="p-4 border-t border-gray-200 dark:border-gray-700">
-                  <Button 
-                    className="w-full" 
+                  <Button
+                    className="w-full"
                     size="lg"
                     onClick={() => {
                       // Reset to intro and open preview
                       setCurrentStep(0);
                       setShowPreview(true);
-                      
+
                       // Start playing automatically after a small delay to ensure the preview is ready
                       setTimeout(() => {
                         setIsPlaying(true);
@@ -1182,12 +1174,12 @@ const BeforeAfterReelCreator = () => {
       )}
 
       {/* Preview Dialog */}
-      <Dialog 
-        open={showPreview} 
+      <Dialog
+        open={showPreview}
         onOpenChange={setShowPreview}
         modal={true}
       >
-        <DialogContent 
+        <DialogContent
           className="max-w-5xl w-[90vw] h-[90vh] max-h-[90vh] flex flex-col p-0 overflow-hidden"
           onInteractOutside={(e) => {
             e.preventDefault();
@@ -1196,7 +1188,7 @@ const BeforeAfterReelCreator = () => {
           <DialogHeader className="border-b border-gray-200 dark:border-gray-700 p-4 flex-shrink-0">
             <DialogTitle>Preview & Share Your Reel</DialogTitle>
           </DialogHeader>
-          
+
           <div className="flex flex-1 overflow-hidden min-h-0">
             {/* Preview Section */}
             <div className="w-[55%] p-6 border-r border-gray-200 dark:border-gray-700 flex items-center justify-center bg-gray-50 dark:bg-gray-900 overflow-auto">
@@ -1205,15 +1197,15 @@ const BeforeAfterReelCreator = () => {
                 <div className="relative mx-auto w-full max-w-[320px] bg-black shadow-2xl border-8 border-black rounded-[40px] overflow-hidden">
                   {/* Notch */}
                   <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/3 h-6 bg-black rounded-b-xl z-10"></div>
-                  
+
                   {/* Screen Content - 9:16 aspect ratio container */}
                   <div className="relative w-full aspect-[9/16] bg-black overflow-hidden">
                     {/* Show the current step in the sequence */}
                     {!isPlaying && (
                       <div className="absolute inset-0 flex items-center justify-center bg-black/30">
-                        <Button 
-                          size="icon" 
-                          variant="ghost" 
+                        <Button
+                          size="icon"
+                          variant="ghost"
                           className="h-16 w-16 rounded-full bg-white/20 backdrop-blur-sm hover:bg-white/30"
                           onClick={togglePlay}
                         >
@@ -1224,14 +1216,14 @@ const BeforeAfterReelCreator = () => {
 
                     {isPlaying && sequence[currentStep].type === 'intro' && reelAssets.intro.animation && (
                       <div className={`absolute inset-0 flex items-center justify-center ${reelAssets.intro.bgColor ? `bg-gradient-to-br ${reelAssets.intro.bgColor}` : 'bg-black'}`}>
-                        <motion.div 
+                        <motion.div
                           className="relative w-48 h-48 flex items-center justify-center z-10"
                           variants={logoVariants[reelAssets.intro.animation] || logoVariants.transform}
                           initial="initial"
                           animate="animate"
                         >
-                          <Image 
-                            src="/fitclub-logo.png" 
+                          <Image
+                            src="/fitclub-logo.png"
                             alt="Logo"
                             width={180}
                             height={180}
@@ -1244,8 +1236,8 @@ const BeforeAfterReelCreator = () => {
                     {((isPlaying && sequence[currentStep].type === 'before') || (!isPlaying && activeTab === 'before')) && reelAssets.before.url && (
                       <div className="absolute inset-0 flex items-center justify-center bg-gray-900">
                         <div className="relative w-full h-full">
-                          <img 
-                            src={reelAssets.before.url} 
+                          <img
+                            src={reelAssets.before.url}
                             alt="Before"
                             className="w-full h-full object-contain"
                           />
@@ -1260,13 +1252,13 @@ const BeforeAfterReelCreator = () => {
                       <div className={`absolute inset-0 flex flex-col items-center justify-center p-4 ${reelAssets.intro.bgColor ? `bg-gradient-to-br ${reelAssets.intro.bgColor}` : 'bg-black'}`}>
                         <div className="relative w-full max-w-5xl mx-auto flex flex-col items-center">
                           {/* Logo - Centered at the top */}
-                          <motion.div 
+                          <motion.div
                             className="relative z-10 mb-6 md:mb-10"
                             initial={{ opacity: 0, y: -50 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6, ease: "easeOut" }}
                           >
-                            <Image 
+                            <Image
                               src="/fitclub-logo.png"
                               alt="Logo"
                               width={150}
@@ -1276,15 +1268,15 @@ const BeforeAfterReelCreator = () => {
                           </motion.div>
 
                           <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center px-4">
-                            <motion.div 
+                            <motion.div
                               className="relative w-full flex justify-center"
                               initial={{ opacity: 0, x: -50 }}
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ duration: 0.5, delay: 0.2 }}
                             >
                               <div className="relative w-full max-w-[200px] md:max-w-[300px] aspect-[9/16] rounded-2xl overflow-hidden shadow-2xl border-2 border-white/10">
-                                <img 
-                                  src={reelAssets.before.url} 
+                                <img
+                                  src={reelAssets.before.url}
                                   alt="Before"
                                   className="w-full h-full object-cover"
                                 />
@@ -1293,16 +1285,16 @@ const BeforeAfterReelCreator = () => {
                                 </div>
                               </div>
                             </motion.div>
-                            
-                            <motion.div 
+
+                            <motion.div
                               className="relative w-full flex justify-center"
                               initial={{ opacity: 0, x: 50 }}
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ duration: 0.5, delay: 0.4 }}
                             >
                               <div className="relative w-full max-w-[200px] md:max-w-[300px] aspect-[9/16] rounded-2xl overflow-hidden shadow-2xl border-2 border-white/10">
-                                <img 
-                                  src={reelAssets.after.url} 
+                                <img
+                                  src={reelAssets.after.url}
                                   alt="After"
                                   className="w-full h-full object-cover"
                                 />
@@ -1314,7 +1306,7 @@ const BeforeAfterReelCreator = () => {
                           </div>
 
                           {/* Watermark */}
-                          <motion.div 
+                          <motion.div
                             className="absolute -bottom-8 right-0 text-white/50 text-xs"
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -1329,8 +1321,8 @@ const BeforeAfterReelCreator = () => {
                     {((isPlaying && sequence[currentStep].type === 'after') || (!isPlaying && activeTab === 'after')) && reelAssets.after.url && (
                       <div className="absolute inset-0 flex items-center justify-center bg-gray-900">
                         <div className="relative w-full h-full">
-                          <img 
-                            src={reelAssets.after.url} 
+                          <img
+                            src={reelAssets.after.url}
                             alt="After"
                             className="w-full h-full object-contain"
                           />
@@ -1345,7 +1337,7 @@ const BeforeAfterReelCreator = () => {
                     {hasFinished && (
                       <div className="absolute inset-0 flex items-center justify-center bg-black/50 z-20">
                         <div className="text-center">
-                          <Button 
+                          <Button
                             onClick={handlePlayAgain}
                             size="lg"
                             className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg transform transition-all hover:scale-105"
@@ -1359,32 +1351,32 @@ const BeforeAfterReelCreator = () => {
 
                     {((isPlaying && sequence[currentStep].type === 'outro' && !hasFinished) || (!isPlaying && activeTab === 'outro')) && reelAssets.outro.animation && (
                       <div className={`absolute inset-0 flex flex-col items-center justify-center p-4 ${reelAssets.outro.bgColor ? `bg-gradient-to-br ${reelAssets.outro.bgColor}` : 'bg-black'}`}>
-                        <motion.div 
+                        <motion.div
                           className="relative w-32 h-32 flex items-center justify-center z-10"
                           variants={logoVariants[reelAssets.outro.animation] || logoVariants.transform}
                           initial="initial"
                           animate="animate"
                         >
-                          <Image 
-                            src="/fitclub-logo.png" 
+                          <Image
+                            src="/fitclub-logo.png"
                             alt="Logo"
                             width={120}
                             height={120}
                             className="object-contain drop-shadow-lg"
                           />
                         </motion.div>
-                        <motion.div 
+                        <motion.div
                           className="text-center mt-6 w-full"
                           initial={{ opacity: 0, y: 20 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: 0.3 }}
                         >
-                          
+
                           <div className="mt-4 p-4 bg-black/30 rounded-lg backdrop-blur-sm">
                             <div className="text-center">
                               {/* <p className="text-sm text-gray-300 mb-2">SCAN TO FOLLOW</p> */}
                               <div className="flex justify-center">
-                                <QRCode 
+                                <QRCode
                                   qrCodePath="/qr-code.png"
                                   title=""
                                   subtitle=""
@@ -1394,11 +1386,11 @@ const BeforeAfterReelCreator = () => {
                               {/* <p className="text-xs text-gray-400 mt-2">@yourusername</p> */}
                             </div>
                             <h2 className="text-2xl font-bold text-white mb-2">
-                            {reelAssets.outro.title || 'Thanks for Watching'}
-                          </h2>
-                          <p className="text-gray-300 mb-4">
-                            {reelAssets.outro.subtitle || 'Follow for more'}
-                          </p>
+                              {reelAssets.outro.title || 'Thanks for Watching'}
+                            </h2>
+                            <p className="text-gray-300 mb-4">
+                              {reelAssets.outro.subtitle || 'Follow for more'}
+                            </p>
                           </div>
                         </motion.div>
                       </div>
@@ -1409,9 +1401,8 @@ const BeforeAfterReelCreator = () => {
                         {sequence.map((_, index) => (
                           <button
                             key={index}
-                            className={`h-1.5 rounded-full transition-all duration-300 ${
-                              index === currentStep ? 'w-6 bg-white' : 'w-2 bg-white/50'
-                            }`}
+                            className={`h-1.5 rounded-full transition-all duration-300 ${index === currentStep ? 'w-6 bg-white' : 'w-2 bg-white/50'
+                              }`}
                             onClick={() => {
                               // Allow jumping to specific step
                               if (sequenceTimeout) clearTimeout(sequenceTimeout);
@@ -1426,7 +1417,7 @@ const BeforeAfterReelCreator = () => {
                 </div>
               </div>
             </div>
-            
+
             {/* Share Options Section */}
             <div className="w-[45%] p-6 overflow-y-auto bg-white dark:bg-gray-900 border-l border-gray-200 dark:border-gray-700">
               <h3 className="text-lg font-medium mb-6">Share Your Reel</h3>
@@ -1434,28 +1425,28 @@ const BeforeAfterReelCreator = () => {
                 <div className="space-y-3">
                   <p className="text-sm font-medium text-gray-700 dark:text-gray-300">Share via</p>
                   <div className="grid grid-cols-2 gap-3">
-                  <Button 
-                    variant="outline" 
-                    className="h-24 flex-col gap-3 px-4 py-6 hover:shadow-md transition-all duration-200 border-input"
-                    onClick={() => window.open('https://www.tiktok.com', '_blank')}
-                  >
-                    <div className="bg-black p-2.5 rounded-xl">
-                      <svg className="h-6 w-6 text-white" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
-                    </svg>
-                  </div>
-                  <span className="font-medium text-white">TikTok</span>
-                </Button>
-                    <Button 
-                      variant="outline" 
+                    <Button
+                      variant="outline"
+                      className="h-24 flex-col gap-3 px-4 py-6 hover:shadow-md transition-all duration-200 border-input"
+                      onClick={() => window.open('https://www.tiktok.com', '_blank')}
+                    >
+                      <div className="bg-black p-2.5 rounded-xl">
+                        <svg className="h-6 w-6 text-white" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+                        </svg>
+                      </div>
+                      <span className="font-medium text-white">TikTok</span>
+                    </Button>
+                    <Button
+                      variant="outline"
                       className="flex-col h-auto py-4 hover:bg-pink-50 dark:hover:bg-pink-900/20"
                       onClick={() => window.open('https://www.instagram.com/stories/upload/', '_blank')}
                     >
                       <Instagram className="h-8 w-8 mb-1 text-pink-600" />
                       <span className="text-xs font-medium">Instagram</span>
                     </Button>
-                    <Button 
-                      variant="outline" 
+                    <Button
+                      variant="outline"
                       className="flex-col h-auto py-4 hover:bg-blue-50 dark:hover:bg-blue-900/20"
                       onClick={() => {
                         navigator.clipboard.writeText('https://example.com/reel/abc123');
@@ -1465,8 +1456,8 @@ const BeforeAfterReelCreator = () => {
                       <MessageSquare className="h-8 w-8 mb-1 text-blue-500" />
                       <span className="text-xs font-medium">Copy Link</span>
                     </Button>
-                    <Button 
-                      variant="outline" 
+                    <Button
+                      variant="outline"
                       className="flex-col h-auto py-4 hover:bg-green-50 dark:hover:bg-green-900/20"
                       onClick={() => {
                         // Add download functionality here
@@ -1477,8 +1468,8 @@ const BeforeAfterReelCreator = () => {
                     </Button>
                   </div>
                 </div>
-                
-                
+
+
                 <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
                   <h4 className="text-sm font-medium mb-2">Reel Details</h4>
                   <div className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
@@ -1493,60 +1484,60 @@ const BeforeAfterReelCreator = () => {
                   </div>
                 </div>
                 {/* Music Player Section - Compact */}
-              <div className="mb-6 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">Music</h3>
-                  {!reelAssets.music && (
-                    <Button 
-                      variant="ghost" 
-                      size="xs" 
-                      className="h-6 text-xs"
-                      onClick={() => setActiveTab('music')}
-                    >
-                      <Music className="h-3 w-3 mr-1" />
-                      Add
-                    </Button>
+                <div className="mb-6 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="text-sm font-medium text-gray-700 dark:text-gray-300">Music</h3>
+                    {!reelAssets.music && (
+                      <Button
+                        variant="ghost"
+                        size="xs"
+                        className="h-6 text-xs"
+                        onClick={() => setActiveTab('music')}
+                      >
+                        <Music className="h-3 w-3 mr-1" />
+                        Add
+                      </Button>
+                    )}
+                  </div>
+                  {reelAssets.music ? (
+                    <div className="flex items-center space-x-3">
+                      <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-md flex-shrink-0 overflow-hidden">
+                        {reelAssets.music.coverUrl ? (
+                          <img
+                            src={reelAssets.music.coverUrl}
+                            alt={reelAssets.music.title}
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <div className="w-full h-full flex items-center justify-center">
+                            <Music className="h-5 w-5 text-white" />
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <h4 className="text-sm font-medium text-gray-900 dark:text-white truncate">{reelAssets.music.title}</h4>
+                        <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
+                          {reelAssets.music.artist || 'Unknown Artist'}
+                        </p>
+                      </div>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-8 w-8 p-0 text-gray-500 hover:bg-gray-200 dark:hover:bg-gray-700"
+
+                      >
+                        <Play className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  ) : (
+                    <p className="text-xs text-gray-500 dark:text-gray-400 text-center">No music selected</p>
                   )}
                 </div>
-                {reelAssets.music ? (
-                  <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-md flex-shrink-0 overflow-hidden">
-                      {reelAssets.music.coverUrl ? (
-                        <img 
-                          src={reelAssets.music.coverUrl} 
-                          alt={reelAssets.music.title}
-                          className="w-full h-full object-cover"
-                        />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center">
-                          <Music className="h-5 w-5 text-white" />
-                        </div>
-                      )}
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <h4 className="text-sm font-medium text-gray-900 dark:text-white truncate">{reelAssets.music.title}</h4>
-                      <p className="text-xs text-gray-500 dark:text-gray-400 truncate">
-                        {reelAssets.music.artist || 'Unknown Artist'}
-                      </p>
-                    </div>
-                    <Button 
-                      variant="ghost" 
-                      size="sm"
-                      className="h-8 w-8 p-0 text-gray-500 hover:bg-gray-200 dark:hover:bg-gray-700"
-                      
-                    >
-                    <Play className="h-4 w-4" />
-                    </Button>
-                  </div>
-                ) : (
-                  <p className="text-xs text-gray-500 dark:text-gray-400 text-center">No music selected</p>
-                )}
-              </div>
-                
+
                 {/* Done Button */}
                 <div className="pt-4 mt-6 border-t border-gray-200 dark:border-gray-700">
                   <div className="flex justify-end">
-                    <Button 
+                    <Button
                       onClick={() => setShowPreview(false)}
                       className="px-6"
                     >

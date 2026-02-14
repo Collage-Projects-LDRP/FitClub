@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { Logo } from '@/components/logo';
 import { useReelCreation } from '@/contexts/ReelCreationContext';
 import { Check, ArrowLeft, ArrowRight } from 'lucide-react';
 
@@ -20,11 +21,11 @@ const OUTRO_TEMPLATES = [
         <div className="relative w-[200px] h-[400px] bg-gray-900 rounded-[40px] p-2 border-2 border-gray-700 shadow-2xl overflow-hidden">
           {/* Phone notch */}
           <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/3 h-6 bg-gray-900 rounded-b-xl z-10"></div>
-          
+
           {/* Screen content */}
           <div className="relative w-full h-full bg-gradient-to-br from-gray-900 to-gray-950 rounded-[32px] overflow-hidden">
             {/* QR Code with animation */}
-            <motion.div 
+            <motion.div
               className="absolute inset-0 flex items-center justify-center"
               initial={{ y: 100, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -35,10 +36,10 @@ const OUTRO_TEMPLATES = [
                 <motion.div
                   className="absolute inset-0 rounded-full border-2 border-purple-500/50"
                   initial={{ scale: 0.8, opacity: 0.7 }}
-                  animate={{ 
-                    scale: 1.5, 
+                  animate={{
+                    scale: 1.5,
                     opacity: 0,
-                    transition: { 
+                    transition: {
                       duration: 2,
                       repeat: Infinity,
                       repeatType: 'loop'
@@ -48,10 +49,10 @@ const OUTRO_TEMPLATES = [
                 <motion.div
                   className="absolute inset-0 rounded-full border-2 border-purple-500/50"
                   initial={{ scale: 0.8, opacity: 0.7 }}
-                  animate={{ 
-                    scale: 1.5, 
+                  animate={{
+                    scale: 1.5,
                     opacity: 0,
-                    transition: { 
+                    transition: {
                       duration: 2,
                       repeat: Infinity,
                       repeatType: 'loop',
@@ -59,7 +60,7 @@ const OUTRO_TEMPLATES = [
                     }
                   }}
                 />
-                
+
                 {/* QR Code */}
                 <div className="relative w-32 h-32 bg-white p-3 rounded-lg z-10">
                   <Image
@@ -72,22 +73,16 @@ const OUTRO_TEMPLATES = [
                 </div>
               </div>
             </motion.div>
-            
+
             {/* Bottom text */}
-            <motion.div 
+            <motion.div
               className="absolute bottom-8 left-0 right-0 text-center px-4"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.5 }}
             >
               <p className="text-white font-medium mb-1">
-                <Image 
-                  src="/fitclub-logo.png" 
-                  alt="Logo" 
-                  width={200} 
-                  height={200} 
-                  className="mx-auto"
-                />
+                <Logo size="sm" isClickable={false} showUnderline={false} />
               </p>
               <p className="text-purple-400 text-sm">@yourusername</p>
             </motion.div>
@@ -105,13 +100,13 @@ const OUTRO_TEMPLATES = [
       <div className="relative w-full h-full bg-black flex items-center justify-center overflow-hidden">
         <div className="relative w-[200px] h-[400px] bg-gray-900 rounded-[40px] p-2 border-2 border-gray-700 shadow-2xl overflow-hidden">
           <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/3 h-6 bg-gray-900 rounded-b-xl z-10"></div>
-          
+
           <div className="relative w-full h-full bg-gradient-to-br from-gray-900 to-gray-950 rounded-[32px] overflow-hidden">
-            <motion.div 
+            <motion.div
               className="absolute inset-0 flex items-center justify-center"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ 
+              transition={{
                 duration: 1,
                 ease: [0.2, 0, 0.2, 1],
                 scale: {
@@ -126,10 +121,10 @@ const OUTRO_TEMPLATES = [
                 <motion.div
                   className="absolute inset-0 rounded-full border-2 border-purple-500/50"
                   initial={{ scale: 0.8, opacity: 0.7 }}
-                  animate={{ 
-                    scale: 1.5, 
+                  animate={{
+                    scale: 1.5,
                     opacity: 0,
-                    transition: { 
+                    transition: {
                       duration: 2,
                       repeat: Infinity,
                       repeatType: 'loop'
@@ -139,10 +134,10 @@ const OUTRO_TEMPLATES = [
                 <motion.div
                   className="absolute inset-0 rounded-full border-2 border-purple-500/50"
                   initial={{ scale: 0.8, opacity: 0.7 }}
-                  animate={{ 
-                    scale: 1.5, 
+                  animate={{
+                    scale: 1.5,
                     opacity: 0,
-                    transition: { 
+                    transition: {
                       duration: 2,
                       repeat: Infinity,
                       repeatType: 'loop',
@@ -150,7 +145,7 @@ const OUTRO_TEMPLATES = [
                     }
                   }}
                 />
-                
+
                 <div className="relative w-32 h-32 bg-white p-3 rounded-lg z-10">
                   <Image
                     src="/qr-code.png"
@@ -162,21 +157,15 @@ const OUTRO_TEMPLATES = [
                 </div>
               </div>
             </motion.div>
-            
-            <motion.div 
+
+            <motion.div
               className="absolute bottom-8 left-0 right-0 text-center px-4"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.5 }}
             >
               <p className="text-white font-medium mb-1">
-              <Image 
-                  src="/fitclub-logo.png" 
-                  alt="Logo" 
-                  width={200} 
-                  height={200} 
-                  className="mx-auto"
-                />
+                <Logo size="sm" isClickable={false} showUnderline={false} />
               </p>
               <p className="text-purple-400 text-sm">@yourusername</p>
             </motion.div>
@@ -194,9 +183,9 @@ const OUTRO_TEMPLATES = [
       <div className="relative w-full h-full bg-black flex items-center justify-center overflow-hidden">
         <div className="relative w-[200px] h-[400px] bg-gray-900 rounded-[40px] p-2 border-2 border-gray-700 shadow-2xl overflow-hidden">
           <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/3 h-6 bg-gray-900 rounded-b-xl z-10"></div>
-          
+
           <div className="relative w-full h-full bg-gradient-to-br from-gray-900 to-gray-950 rounded-[32px] overflow-hidden">
-            <motion.div 
+            <motion.div
               className="absolute inset-0 flex items-center justify-center"
               initial={{ x: 200, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
@@ -212,10 +201,10 @@ const OUTRO_TEMPLATES = [
                 <motion.div
                   className="absolute inset-0 rounded-full border-2 border-purple-500/50"
                   initial={{ scale: 0.8, opacity: 0.7 }}
-                  animate={{ 
-                    scale: 1.5, 
+                  animate={{
+                    scale: 1.5,
                     opacity: 0,
-                    transition: { 
+                    transition: {
                       duration: 2,
                       repeat: Infinity,
                       repeatType: 'loop'
@@ -225,10 +214,10 @@ const OUTRO_TEMPLATES = [
                 <motion.div
                   className="absolute inset-0 rounded-full border-2 border-purple-500/50"
                   initial={{ scale: 0.8, opacity: 0.7 }}
-                  animate={{ 
-                    scale: 1.5, 
+                  animate={{
+                    scale: 1.5,
                     opacity: 0,
-                    transition: { 
+                    transition: {
                       duration: 2,
                       repeat: Infinity,
                       repeatType: 'loop',
@@ -236,7 +225,7 @@ const OUTRO_TEMPLATES = [
                     }
                   }}
                 />
-                
+
                 <div className="relative w-32 h-32 bg-white p-3 rounded-lg z-10">
                   <Image
                     src="/qr-code.png"
@@ -248,21 +237,15 @@ const OUTRO_TEMPLATES = [
                 </div>
               </div>
             </motion.div>
-            
-            <motion.div 
+
+            <motion.div
               className="absolute bottom-8 left-0 right-0 text-center px-4"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.3, duration: 0.5 }}
             >
               <p className="text-white font-medium mb-1">
-                <Image 
-                  src="/fitclub-logo.png" 
-                  alt="Logo" 
-                  width={200} 
-                  height={200} 
-                  className="mx-auto"
-                />
+                <Logo size="sm" isClickable={false} showUnderline={false} />
               </p>
               <p className="text-purple-400 text-sm">@yourusername</p>
             </motion.div>
@@ -355,9 +338,8 @@ export function OutroSelectionStep() {
           {OUTRO_TEMPLATES.map((outro) => (
             <motion.div
               key={outro.id}
-              className={`flex-shrink-0 w-64 relative group cursor-pointer rounded-xl overflow-hidden transition-all duration-300 ${
-                selectedId === outro.id ? 'ring-4 ring-blue-500' : 'ring-1 ring-gray-700'
-              }`}
+              className={`flex-shrink-0 w-64 relative group cursor-pointer rounded-xl overflow-hidden transition-all duration-300 ${selectedId === outro.id ? 'ring-4 ring-blue-500' : 'ring-1 ring-gray-700'
+                }`}
               onClick={() => handleSelect(outro)}
               onMouseEnter={() => handleHover(outro.id)}
               onMouseLeave={() => setHoveredId(null)}
@@ -382,12 +364,11 @@ export function OutroSelectionStep() {
                     {outro.preview}
                   </motion.div>
                 </AnimatePresence>
-                
+
                 {/* Overlay */}
-                <div 
-                  className={`absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
-                    selectedId === outro.id ? 'opacity-100' : ''
-                  }`}
+                <div
+                  className={`absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${selectedId === outro.id ? 'opacity-100' : ''
+                    }`}
                 >
                   <div className="flex items-center space-x-2">
                     {selectedId === outro.id ? (
@@ -420,7 +401,7 @@ export function OutroSelectionStep() {
             </motion.div>
           ))}
         </div>
-        
+
         {/* Scroll indicator */}
         <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-gray-900 to-transparent pointer-events-none" />
       </div>
@@ -433,15 +414,14 @@ export function OutroSelectionStep() {
           <ArrowLeft className="h-4 w-4" />
           <span>Back</span>
         </button>
-        
+
         <button
           onClick={handleContinue}
           disabled={!selectedId}
-          className={`flex items-center space-x-2 px-6 py-2.5 text-sm font-medium rounded-md transition-colors ${
-            selectedId
+          className={`flex items-center space-x-2 px-6 py-2.5 text-sm font-medium rounded-md transition-colors ${selectedId
               ? 'bg-blue-600 text-white hover:bg-blue-700'
               : 'bg-gray-700 text-gray-400 cursor-not-allowed'
-          }`}
+            }`}
         >
           <span>Continue</span>
           <ArrowRight className="h-4 w-4" />

@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Link from "next/link"
-import Image from "next/image"
+import { Logo } from "@/components/logo"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Alert, AlertDescription } from "@/components/ui/alert"
@@ -155,15 +155,9 @@ export default function LoginPage() {
           >
             {/* Logo */}
             <motion.div className="text-center" variants={itemVariants}>
-              <Link href="/" className="inline-block">
-                <Image
-                  src="/fitclub-logo.png"
-                  alt="FitClub"
-                  width={180}
-                  height={180}
-                  className="mx-auto"
-                />
-              </Link>
+              <div className="inline-block">
+                <Logo size="lg" />
+              </div>
             </motion.div>
 
             {/* Login Form */}

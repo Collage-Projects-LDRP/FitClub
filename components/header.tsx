@@ -15,6 +15,7 @@ import { useTheme } from "next-themes"
 import { getCurrentUser } from "@/lib/auth"
 import type { DatabaseUser } from "@/lib/database"
 import { RewardPoints } from "@/components/reward-points"
+import { Logo } from "@/components/logo"
 
 // Helper function to get a plain user object
 const getPlainUser = (user: any) => {
@@ -208,16 +209,7 @@ export function Header() {
     return (
       <header className="sticky top-0 z-50 w-full border-b bg-gray-900/95 backdrop-blur supports-[backdrop-filter]:bg-gray-900/80 border-gray-700">
         <div className="container flex h-20 items-center justify-between px-4">
-          <Link href="/" className="flex items-center leading-3">
-            <Image
-              src="/fitclub-logo.png"
-              alt="FitClub"
-              width={160}
-              height={160}
-              className="h-40 w-40 object-contain filter brightness-0 invert"
-              priority
-            />
-          </Link>
+          <Logo size="sm" isClickable={false} showUnderline={false} className="opacity-50" />
           <div className="flex items-center space-x-4">
             <div className="w-20 h-8 bg-gray-800 rounded animate-pulse" />
           </div>
@@ -229,17 +221,8 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-gray-900/95 backdrop-blur supports-[backdrop-filter]:bg-gray-900/80 border-gray-700">
       <div className="container flex h-20 items-center justify-between px-4">
-        {/* Logo - Much Bigger */}
-        <Link href="/" className="flex items-center leading-3">
-          <Image
-            src="/fitclub-logo.png"
-            alt="FitClub"
-            width={200}
-            height={200}
-            className="h-50 w-50 object-contain "
-            priority
-          />
-        </Link>
+        {/* Premium Text Logo */}
+        <Logo />
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-1">

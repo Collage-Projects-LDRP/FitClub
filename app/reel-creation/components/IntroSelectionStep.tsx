@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useReelCreation } from '@/contexts/ReelCreationContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import { Logo } from '@/components/logo';
 import { Check, Play, Zap, Sparkles, X, ArrowLeft, ArrowRight } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 
@@ -21,24 +22,18 @@ const INTRO_TEMPLATES = [
         <div className="relative w-[200px] h-[400px] bg-gray-900 rounded-[40px] p-2 border-2 border-gray-700 shadow-2xl overflow-hidden">
           {/* Phone notch */}
           <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/3 h-6 bg-gray-900 rounded-b-xl z-10"></div>
-          
+
           {/* Screen content */}
           <div className="relative w-full h-full bg-gradient-to-br from-purple-900 to-pink-900 rounded-[32px] overflow-hidden">
-            <motion.div 
+            <motion.div
               className="absolute inset-0 flex items-center justify-center"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <Image 
-                src="/fitclub-logo.png" 
-                alt="Logo" 
-                width={120} 
-                height={120} 
-                className="opacity-90 z-10"
-              />
+              <Logo size="md" isClickable={false} showUnderline={false} />
             </motion.div>
-            <motion.div 
+            <motion.div
               className="absolute inset-0 m-auto w-48 h-48 rounded-full bg-white/5 backdrop-blur-sm"
               animate={{
                 scale: [1, 1.2, 1],
@@ -66,7 +61,7 @@ const INTRO_TEMPLATES = [
       <div className="relative w-full h-full bg-black flex items-center justify-center">
         <div className="relative w-[200px] h-[400px] bg-gray-900 rounded-[40px] p-2 border-2 border-gray-700 shadow-2xl overflow-hidden">
           <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/3 h-6 bg-gray-900 rounded-b-xl z-10"></div>
-          
+
           <div className="relative w-full h-full bg-gradient-to-br from-blue-900 to-cyan-800 rounded-[32px] overflow-hidden">
             <div className="absolute inset-0 flex items-center justify-center">
               {[...Array(5)].map((_, i) => (
@@ -96,13 +91,7 @@ const INTRO_TEMPLATES = [
                   repeatType: "reverse"
                 }}
               >
-                <Image 
-                  src="/fitclub-logo.png" 
-                  alt="Logo" 
-                  width={100} 
-                  height={100} 
-                  className="drop-shadow-lg"
-                />
+                <Logo size="md" isClickable={false} showUnderline={false} />
               </motion.div>
             </div>
           </div>
@@ -121,9 +110,9 @@ const INTRO_TEMPLATES = [
       <div className="relative w-full h-full bg-black flex items-center justify-center">
         <div className="relative w-[200px] h-[400px] bg-gray-900 rounded-[40px] p-2 border-2 border-gray-700 shadow-2xl overflow-hidden">
           <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/3 h-6 bg-gray-900 rounded-b-xl z-10"></div>
-          
+
           <div className="relative w-full h-full bg-gray-900 rounded-[32px] overflow-hidden">
-            <motion.div 
+            <motion.div
               className="absolute inset-0"
               animate={{
                 background: [
@@ -157,12 +146,7 @@ const INTRO_TEMPLATES = [
                 repeatType: "reverse"
               }}
             >
-              <Image 
-                src="/fitclub-logo.png" 
-                alt="Logo" 
-                width={120} 
-                height={120} 
-              />
+              <Logo size="md" isClickable={false} showUnderline={false} />
             </motion.div>
           </div>
         </div>
@@ -180,7 +164,7 @@ const INTRO_TEMPLATES = [
       <div className="relative w-full h-full bg-black flex items-center justify-center">
         <div className="relative w-[200px] h-[400px] bg-gray-900 rounded-[40px] p-2 border-2 border-gray-700 shadow-2xl overflow-hidden">
           <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/3 h-6 bg-gray-900 rounded-b-xl z-10"></div>
-          
+
           <div className="relative w-full h-full bg-gradient-to-br from-gray-800 to-gray-900 rounded-[32px] overflow-hidden">
             <div className="absolute inset-0 grid grid-cols-3 gap-1 opacity-20">
               {[...Array(9)].map((_, i) => (
@@ -195,13 +179,7 @@ const INTRO_TEMPLATES = [
             >
               <div className="text-center p-4 bg-gray-900/80 backdrop-blur-sm rounded-lg border border-gray-700 w-4/5">
                 <div className="mb-4">
-                  <Image 
-                    src="/fitclub-logo.png" 
-                    alt="Logo" 
-                    width={80} 
-                    height={80} 
-                    className="mx-auto"
-                  />
+                  <Logo size="sm" isClickable={false} showUnderline={false} />
                 </div>
                 <div className="h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent my-4"></div>
                 <p className="text-gray-300 text-sm">FITCLUB</p>
@@ -250,9 +228,8 @@ export function IntroSelectionStep() {
           {INTRO_TEMPLATES.map((intro) => (
             <motion.div
               key={intro.id}
-              className={`flex-shrink-0 w-64 relative group cursor-pointer rounded-xl overflow-hidden transition-all duration-300 ${
-                selectedId === intro.id ? 'ring-4 ring-blue-500' : 'ring-1 ring-gray-700'
-              }`}
+              className={`flex-shrink-0 w-64 relative group cursor-pointer rounded-xl overflow-hidden transition-all duration-300 ${selectedId === intro.id ? 'ring-4 ring-blue-500' : 'ring-1 ring-gray-700'
+                }`}
               onClick={() => handleSelect(intro)}
               onMouseEnter={() => setHoveredId(intro.id)}
               onMouseLeave={() => setHoveredId(null)}
@@ -265,12 +242,11 @@ export function IntroSelectionStep() {
                 <div className="absolute inset-0">
                   {intro.preview}
                 </div>
-                
+
                 {/* Overlay */}
-                <div 
-                  className={`absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
-                    selectedId === intro.id ? 'opacity-100' : ''
-                  }`}
+                <div
+                  className={`absolute inset-0 flex items-center justify-center bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${selectedId === intro.id ? 'opacity-100' : ''
+                    }`}
                 >
                   <div className="flex items-center space-x-2">
                     {selectedId === intro.id ? (
@@ -309,7 +285,7 @@ export function IntroSelectionStep() {
             </motion.div>
           ))}
         </div>
-        
+
         {/* Scroll indicator */}
         <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-gray-900 to-transparent pointer-events-none" />
       </div>
@@ -322,15 +298,14 @@ export function IntroSelectionStep() {
           <ArrowLeft className="h-4 w-4" />
           <span>Back</span>
         </button>
-        
+
         <button
           onClick={handleContinue}
           disabled={!selectedId}
-          className={`flex items-center space-x-2 px-6 py-2.5 text-sm font-medium rounded-md transition-colors ${
-            selectedId
+          className={`flex items-center space-x-2 px-6 py-2.5 text-sm font-medium rounded-md transition-colors ${selectedId
               ? 'bg-blue-600 text-white hover:bg-blue-700'
               : 'bg-gray-700 text-gray-400 cursor-not-allowed'
-          }`}
+            }`}
         >
           <span>Continue</span>
           <ArrowRight className="h-4 w-4" />
