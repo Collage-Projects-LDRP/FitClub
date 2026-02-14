@@ -15,10 +15,10 @@ export default function BeforeAfterPage() {
   const router = useRouter();
   const { beforePhoto, afterPhoto, reset } = useBeforeAfter();
   const [currentStep, setCurrentStep] = useState(0);
-  const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
+  const [selectedTemplate, setSelectedTemplate] = useState<'slider' | 'side-by-side' | 'fade' | null>(null);
   const [showSharingStep, setShowSharingStep] = useState(false);
 
-  // Reset the before photo when the component mounts (when navigating back from social-share)
+  // Reset the before photo when the component mounts (when navigating back from dashboard)
   useEffect(() => {
     reset();
   }, []);
@@ -31,7 +31,7 @@ export default function BeforeAfterPage() {
     setCurrentStep(2);
   };
 
-  const handleTemplateSelect = (templateId: string) => {
+  const handleTemplateSelect = (templateId: 'slider' | 'side-by-side' | 'fade') => {
     setSelectedTemplate(templateId);
     setShowSharingStep(true);
     setCurrentStep(3); // Move to Share step
@@ -42,8 +42,8 @@ export default function BeforeAfterPage() {
       setShowSharingStep(false);
       setCurrentStep(2);
     } else if (currentStep === 0) {
-      // Navigate to social-share page when on first step and back is clicked
-      router.push('/social-share');
+      // Navigate to dashboard page when on first step and back is clicked
+      router.push('/dashboard');
     } else if (currentStep > 0) {
       setCurrentStep(currentStep - 1);
     }
@@ -62,38 +62,38 @@ export default function BeforeAfterPage() {
           </div>
           <p className="text-gray-400 mt-2">Showcase your transformation with a stunning before and after comparison</p>
         </div>
-        
+
         {/* Progress Bar */}
-          <div className="mb-8">
-            <ProgressBar steps={STEPS} currentStep={currentStep} />
-          </div>
+        <div className="mb-8">
+          <ProgressBar steps={STEPS} currentStep={currentStep} />
+        </div>
 
         {/* Main Content */}
         <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 shadow-xl">
           {showSharingStep ? (
-            <SharingStep 
+            <SharingStep
               onBack={handleBack}
-              onComplete={() => router.push('/social-share')}
+              onComplete={() => router.push('/dashboard')}
               selectedTemplate={selectedTemplate ?? 'side-by-side'}
             />
           ) : (
             <>
               {currentStep === 0 && (
-                <BeforePhotoSelectionStep 
-                  onContinue={handleBeforeContinue} 
-                  onBack={handleBack} 
+                <BeforePhotoSelectionStep
+                  onContinue={handleBeforeContinue}
+                  onBack={handleBack}
                 />
               )}
               {currentStep === 1 && (
-                <AfterPhotoSelectionStep 
-                  onContinue={handleAfterContinue} 
-                  onBack={handleBack} 
+                <AfterPhotoSelectionStep
+                  onContinue={handleAfterContinue}
+                  onBack={handleBack}
                 />
               )}
               {currentStep === 2 && (
-                <TemplateSelectionStep 
-                  onContinue={handleTemplateSelect} 
-                  onBack={handleBack} 
+                <TemplateSelectionStep
+                  onContinue={handleTemplateSelect}
+                  onBack={handleBack}
                 />
               )}
             </>

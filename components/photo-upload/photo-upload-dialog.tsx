@@ -11,9 +11,10 @@ import { Upload, X, Loader2 } from "lucide-react"
 
 type PhotoUploadProps = {
   onUploadSuccess: (newPhoto: any) => void
+  children?: React.ReactNode
 }
 
-export function PhotoUploadDialog({ onUploadSuccess }: PhotoUploadProps) {
+export function PhotoUploadDialog({ onUploadSuccess, children }: PhotoUploadProps) {
   const [isOpen, setIsOpen] = useState(false)
   const [isUploading, setIsUploading] = useState(false)
   const [file, setFile] = useState<File | null>(null)
@@ -33,7 +34,7 @@ export function PhotoUploadDialog({ onUploadSuccess }: PhotoUploadProps) {
         })
         return
       }
-      
+
       if (selectedFile.size > 5 * 1024 * 1024) {
         toast({
           title: "File too large",
@@ -42,7 +43,7 @@ export function PhotoUploadDialog({ onUploadSuccess }: PhotoUploadProps) {
         })
         return
       }
-      
+
       setFile(selectedFile)
       setPreviewUrl(URL.createObjectURL(selectedFile))
     }
@@ -57,7 +58,7 @@ export function PhotoUploadDialog({ onUploadSuccess }: PhotoUploadProps) {
     try {
       // Simulate upload
       await new Promise(resolve => setTimeout(resolve, 1000))
-      
+
       const newPhoto = {
         id: Date.now().toString(),
         url: previewUrl || "",
@@ -66,17 +67,17 @@ export function PhotoUploadDialog({ onUploadSuccess }: PhotoUploadProps) {
         comments: 0,
         category: "General"
       }
-      
+
       onUploadSuccess(newPhoto)
       toast({ title: "Upload successful" })
-      
+
       // Reset form
       setFile(null)
       setPreviewUrl(null)
       setCaption("")
       if (fileInputRef.current) fileInputRef.current.value = ''
       setIsOpen(false)
-      
+
     } catch (error) {
       console.error("Error uploading photo:", error)
       toast({
@@ -92,10 +93,12 @@ export function PhotoUploadDialog({ onUploadSuccess }: PhotoUploadProps) {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button className="gap-2">
-          <Upload className="w-4 h-4" />
-          Upload Photo
-        </Button>
+        {children || (
+          <Button className="gap-2">
+            <Upload className="w-4 h-4" />
+            Upload Photo
+          </Button>
+        )}
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
@@ -138,7 +141,7 @@ export function PhotoUploadDialog({ onUploadSuccess }: PhotoUploadProps) {
               </div>
             )}
           </div>
-          
+
           <div className="space-y-2">
             <Label htmlFor="caption">Caption (Optional)</Label>
             <Textarea
@@ -148,7 +151,7 @@ export function PhotoUploadDialog({ onUploadSuccess }: PhotoUploadProps) {
               onChange={(e) => setCaption(e.target.value)}
             />
           </div>
-          
+
           <div className="flex justify-end gap-2">
             <Button
               type="button"

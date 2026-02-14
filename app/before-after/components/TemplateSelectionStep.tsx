@@ -6,23 +6,22 @@ import Image from 'next/image';
 import { useBeforeAfter } from '@/contexts/BeforeAfterContext';
 
 // Base template component with consistent styling
-const TemplateCard = ({ 
-  title, 
+const TemplateCard = ({
+  title,
   description,
   children,
   isSelected,
-  onClick 
-}: { 
+  onClick
+}: {
   title: string;
   description: string;
   children: React.ReactNode;
   isSelected: boolean;
   onClick: () => void;
 }) => (
-  <div 
-    className={`relative rounded-xl overflow-hidden cursor-pointer transition-all duration-200 h-full ${
-      isSelected ? 'ring-2 ring-pink-500' : 'ring-1 ring-gray-700 hover:ring-pink-400'
-    }`}
+  <div
+    className={`relative rounded-xl overflow-hidden cursor-pointer transition-all duration-200 h-full ${isSelected ? 'ring-2 ring-pink-500' : 'ring-1 ring-gray-700 hover:ring-pink-400'
+      }`}
     onClick={onClick}
   >
     <div className="bg-gray-900 rounded-lg overflow-hidden shadow-md h-full flex flex-col">
@@ -57,7 +56,7 @@ const SliderTemplate = ({ beforePhoto, afterPhoto, qrCodeUrl, logoUrl }: any) =>
           BEFORE
         </div>
       </div>
-      
+
       {/* After Image */}
       <div className="relative">
         {afterPhoto ? (
@@ -72,7 +71,7 @@ const SliderTemplate = ({ beforePhoto, afterPhoto, qrCodeUrl, logoUrl }: any) =>
         </div>
       </div>
     </div>
-    
+
     {/* Footer with Logo and QR Code */}
     <div className="p-3 border-t border-gray-700 bg-gray-900">
       <div className="flex justify-between items-center">
@@ -93,15 +92,15 @@ const SideBySideTemplate = ({ beforePhoto, afterPhoto, qrCodeUrl, logoUrl }: any
     {/* Header with Large Logo */}
     <div className="p-4 bg-gradient-to-r from-gray-900 to-gray-800 flex justify-center items-center">
       <div className="w-80 h-20 relative">
-        <Image 
-          src={logoUrl} 
-          alt="Logo" 
-          layout="fill" 
+        <Image
+          src={logoUrl}
+          alt="Logo"
+          layout="fill"
           objectFit="contain"
         />
       </div>
     </div>
-    
+
     <div className="flex-1 grid grid-cols-2 gap-0.5 bg-gray-800 p-1">
       {/* Before */}
       <div className="bg-gray-900 rounded-l overflow-hidden relative">
@@ -116,7 +115,7 @@ const SideBySideTemplate = ({ beforePhoto, afterPhoto, qrCodeUrl, logoUrl }: any
           </div>
         )}
       </div>
-      
+
       {/* After */}
       <div className="bg-gray-900 rounded-r overflow-hidden relative">
         <div className="absolute top-2 right-2 bg-pink-600 text-white text-xs px-2 py-1 rounded z-10">
@@ -131,7 +130,7 @@ const SideBySideTemplate = ({ beforePhoto, afterPhoto, qrCodeUrl, logoUrl }: any
         )}
       </div>
     </div>
-    
+
     {/* QR Code Section */}
     <div className="p-4 bg-gray-800 border-t border-gray-700">
       <div className="flex items-center justify-between bg-gray-700 p-3 rounded-lg">
@@ -159,16 +158,16 @@ const FadeTemplate = ({ beforePhoto, afterPhoto, qrCodeUrl, logoUrl }: any) => (
         <Image src={qrCodeUrl} alt="QR Code" layout="fill" objectFit="contain" />
       </div>
     </div>
-    
+
     {/* Main Content - Up-Down Layout */}
     <div className="relative flex-1 flex flex-col overflow-hidden">
       {/* Before Image (Top Half) */}
       <div className="relative h-1/2 overflow-hidden">
         {beforePhoto ? (
-          <Image 
-            src={beforePhoto} 
-            alt="Before" 
-            layout="fill" 
+          <Image
+            src={beforePhoto}
+            alt="Before"
+            layout="fill"
             objectFit="cover"
           />
         ) : (
@@ -180,14 +179,14 @@ const FadeTemplate = ({ beforePhoto, afterPhoto, qrCodeUrl, logoUrl }: any) => (
           BEFORE
         </div>
       </div>
-      
+
       {/* After Image (Bottom Half) */}
       <div className="relative h-1/2 overflow-hidden">
         {afterPhoto ? (
-          <Image 
-            src={afterPhoto} 
-            alt="After" 
-            layout="fill" 
+          <Image
+            src={afterPhoto}
+            alt="After"
+            layout="fill"
             objectFit="cover"
           />
         ) : (
@@ -206,12 +205,12 @@ const FadeTemplate = ({ beforePhoto, afterPhoto, qrCodeUrl, logoUrl }: any) => (
 // ... (keep the rest of the file the same)
 
 interface TemplateSelectionStepProps {
-  onContinue: (templateId: string) => void;
+  onContinue: (templateId: 'slider' | 'side-by-side' | 'fade') => void;
   onBack: () => void;
 }
 
 export default function TemplateSelectionStep({ onContinue, onBack }: TemplateSelectionStepProps) {
-  const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
+  const [selectedTemplate, setSelectedTemplate] = useState<'slider' | 'side-by-side' | 'fade' | null>(null);
   const { beforePhoto, afterPhoto } = useBeforeAfter();
   const qrCodeUrl = '/qr-code.png';
   const logoUrl = '/fitclub-logo.png';
@@ -235,7 +234,7 @@ export default function TemplateSelectionStep({ onContinue, onBack }: TemplateSe
       description: 'Hover to reveal changes',
       component: FadeTemplate,
     }
-  ];
+  ] as const;
 
   return (
     <div className="space-y-8">
@@ -255,8 +254,8 @@ export default function TemplateSelectionStep({ onContinue, onBack }: TemplateSe
               isSelected={selectedTemplate === template.id}
               onClick={() => setSelectedTemplate(template.id)}
             >
-              <TemplateComponent 
-                beforePhoto={beforePhoto} 
+              <TemplateComponent
+                beforePhoto={beforePhoto}
                 afterPhoto={afterPhoto}
                 qrCodeUrl={qrCodeUrl}
                 logoUrl={logoUrl}
@@ -277,11 +276,10 @@ export default function TemplateSelectionStep({ onContinue, onBack }: TemplateSe
         <button
           onClick={() => selectedTemplate && onContinue(selectedTemplate)}
           disabled={!selectedTemplate}
-          className={`px-6 py-2.5 rounded-lg flex items-center ${
-            selectedTemplate
-              ? 'bg-gradient-to-r from-pink-600 to-purple-600 text-white hover:opacity-90'
-              : 'bg-gray-800 text-gray-500 cursor-not-allowed'
-          }`}
+          className={`px-6 py-2.5 rounded-lg flex items-center ${selectedTemplate
+            ? 'bg-gradient-to-r from-pink-600 to-purple-600 text-white hover:opacity-90'
+            : 'bg-gray-800 text-gray-500 cursor-not-allowed'
+            }`}
         >
           Continue
           <ArrowRight className="w-4 h-4 ml-2" />

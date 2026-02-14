@@ -5,20 +5,19 @@ import { useRouter } from "next/navigation"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { 
-  Heart, 
-  MessageCircle, 
-  ArrowUp, 
-  ArrowDown, 
-  Edit, 
+import {
+  Heart,
+  MessageCircle,
+  ArrowUp,
+  ArrowDown,
+  Edit,
   Trash2,
-  Share2, 
-  Image as ImageIcon, 
-  Upload 
+  Share2,
+  Image as ImageIcon,
+  Upload
 } from "lucide-react"
 import { getCurrentUser } from "@/lib/auth"
 import type { DatabaseUser } from "@/lib/database"
-import { SharingWizard } from "@/components/photo-sharing/sharing-wizard"
 import { PhotoUploadDialog } from "@/components/photo-upload/photo-upload-dialog"
 
 type SortOrder = "newest" | "oldest"
@@ -145,7 +144,6 @@ export default function GalleryPage() {
   const [loading, setLoading] = useState(true)
   const [searchQuery, setSearchQuery] = useState("")
   const [sortOrder, setSortOrder] = useState<SortOrder>("newest")
-  const [isSharingWizardOpen, setIsSharingWizardOpen] = useState(false)
   const [selectedPhoto, setSelectedPhoto] = useState<Photo | null>(null)
   const [editingPhoto, setEditingPhoto] = useState<Photo | null>(null)
   const [editCaption, setEditCaption] = useState("")
@@ -173,10 +171,10 @@ export default function GalleryPage() {
   }, [router])
 
   const sortedAndFilteredPhotos = [...photos].sort((a, b) => {
-    return sortOrder === "newest" 
+    return sortOrder === "newest"
       ? new Date(b.id).getTime() - new Date(a.id).getTime()
       : new Date(a.id).getTime() - new Date(b.id).getTime()
-  }).filter(photo => 
+  }).filter(photo =>
     photo.caption.toLowerCase().includes(searchQuery.toLowerCase()) ||
     photo.category.toLowerCase().includes(searchQuery.toLowerCase())
   )
@@ -197,32 +195,16 @@ export default function GalleryPage() {
   const saveEdit = (e: React.FormEvent) => {
     e.preventDefault()
     if (editingPhoto) {
-      setPhotos(photos.map(photo => 
-        photo.id === editingPhoto.id 
-          ? { ...photo, caption: editCaption } 
+      setPhotos(photos.map(photo =>
+        photo.id === editingPhoto.id
+          ? { ...photo, caption: editCaption }
           : photo
       ))
       setEditingPhoto(null)
     }
   }
 
-  const handleShare = (platform: SharePlatform) => {
-    if (!selectedPhoto) return
-    
-    if (platform === 'download') {
-      const a = document.createElement('a')
-      a.href = selectedPhoto.url
-      a.download = `fitclub-share-${Date.now()}.jpg`
-      document.body.appendChild(a)
-      a.click()
-      document.body.removeChild(a)
-    } else {
-      const url = platform === 'instagram' 
-        ? 'https://www.instagram.com/'
-        : 'https://www.tiktok.com/upload?lang=en'
-      window.open(url, '_blank')
-    }
-  }
+
 
   if (loading) {
     return (
@@ -254,7 +236,7 @@ export default function GalleryPage() {
                 <p className="text-gray-200 text-lg">
                   Track progress, share achievements, and get inspired
                 </p>
-                
+
                 {/* Stats */}
                 <div className="mt-6 flex flex-wrap justify-center md:justify-start gap-6 text-sm">
                   {[
@@ -271,15 +253,15 @@ export default function GalleryPage() {
                   ))}
                 </div>
               </div>
-              
+
               <div className="flex flex-col sm:flex-row gap-4 mt-6 md:mt-0">
-                <PhotoUploadDialog 
+                <PhotoUploadDialog
                   onUploadSuccess={(newPhoto) => {
                     setPhotos(prev => [newPhoto, ...prev])
                   }}
                 >
-                  <Button 
-                    size="lg" 
+                  <Button
+                    size="lg"
                     className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-8 py-6 text-base shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-0.5"
                   >
                     <Upload className="w-5 h-5 mr-2" />
@@ -326,36 +308,22 @@ export default function GalleryPage() {
         {/* Photo Grid */}
         {sortedAndFilteredPhotos.length > 0 ? (
           <div className="border-4 border-gray-200 dark:border-gray-700 rounded-2xl p-6 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
-            {sortedAndFilteredPhotos.map((photo) => (
-              <Card key={photo.id} className="relative group overflow-hidden border-4 border-gray-200 dark:border-gray-700 hover:border-purple-500 dark:hover:border-purple-500 transition-all duration-300 shadow-md hover:shadow-lg rounded-xl">
-                <div className="relative aspect-square overflow-hidden border-b border-gray-200 dark:border-gray-600">
-                  <Image
-                    src={photo.url}
-                    alt={photo.caption}
-                    fill
-                    className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  />
-                  
-                  {/* Action Buttons Overlay */}
-                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3 p-4">
-                    <div className="flex flex-wrap justify-center gap-3">
-                      {/* Share Button */}
-                      <Button 
-                        variant="outline" 
-                        size="icon" 
-                        className="bg-white/90 text-gray-900 hover:bg-white w-10 h-10 rounded-full shadow-lg"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setSelectedPhoto(photo);
-                          setIsSharingWizardOpen(true);
-                        }}
-                      >
-                        <Share2 className="w-4 h-4" />
-                      </Button>
-                      
-                      {/* Like Button */}
-                      {/* <Button 
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+              {sortedAndFilteredPhotos.map((photo) => (
+                <Card key={photo.id} className="relative group overflow-hidden border-4 border-gray-200 dark:border-gray-700 hover:border-purple-500 dark:hover:border-purple-500 transition-all duration-300 shadow-md hover:shadow-lg rounded-xl">
+                  <div className="relative aspect-square overflow-hidden border-b border-gray-200 dark:border-gray-600">
+                    <Image
+                      src={photo.url}
+                      alt={photo.caption}
+                      fill
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+
+                    {/* Action Buttons Overlay */}
+                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3 p-4">
+                      <div className="flex flex-wrap justify-center gap-3">
+                        {/* Like Button */}
+                        {/* <Button 
                         variant="outline" 
                         size="icon" 
                         className="bg-white/90 text-gray-900 hover:bg-white w-10 h-10 rounded-full shadow-lg"
@@ -371,51 +339,51 @@ export default function GalleryPage() {
                       >
                         <Heart className="w-4 h-4" />
                       </Button> */}
-                      
-                      {/* Edit Button */}
-                      <Button 
-                        variant="outline" 
-                        size="icon" 
-                        className="bg-white/90 text-gray-900 hover:bg-white w-10 h-10 rounded-full shadow-lg"
-                        onClick={(e) => handleEditPhoto(photo, e)}
-                      >
-                        <Edit className="w-4 h-4" />
-                      </Button>
-                      
-                      {/* Delete Button */}
-                      <Button 
-                        variant="outline" 
-                        size="icon" 
-                        className="bg-white/90 text-red-600 hover:bg-red-50 hover:text-red-700 w-10 h-10 rounded-full shadow-lg"
-                        onClick={(e) => handleDeletePhoto(photo.id, e)}
-                      >
-                        <Trash2 className="w-4 h-4" />
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-                
-                <CardContent className="p-4">
-                  <div className="flex items-start justify-between">
-                    <div className="space-y-1">
-                      <p className="font-medium text-sm line-clamp-2">{photo.caption}</p>
-                      <div className="flex items-center text-xs text-gray-500 dark:text-gray-400 gap-2">
-                        <span className="inline-flex items-center">
-                          <Heart className="w-3 h-3 mr-1" /> {photo.votes}
-                        </span>
-                        <span className="inline-flex items-center">
-                          <MessageCircle className="w-3 h-3 mr-1" /> {photo.comments}
-                        </span>
+
+                        {/* Edit Button */}
+                        <Button
+                          variant="outline"
+                          size="icon"
+                          className="bg-white/90 text-gray-900 hover:bg-white w-10 h-10 rounded-full shadow-lg"
+                          onClick={(e) => handleEditPhoto(photo, e)}
+                        >
+                          <Edit className="w-4 h-4" />
+                        </Button>
+
+                        {/* Delete Button */}
+                        <Button
+                          variant="outline"
+                          size="icon"
+                          className="bg-white/90 text-red-600 hover:bg-red-50 hover:text-red-700 w-10 h-10 rounded-full shadow-lg"
+                          onClick={(e) => handleDeletePhoto(photo.id, e)}
+                        >
+                          <Trash2 className="w-4 h-4" />
+                        </Button>
                       </div>
                     </div>
-                    <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300">
-                      {photo.category}
-                    </span>
                   </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+
+                  <CardContent className="p-4">
+                    <div className="flex items-start justify-between">
+                      <div className="space-y-1">
+                        <p className="font-medium text-sm line-clamp-2">{photo.caption}</p>
+                        <div className="flex items-center text-xs text-gray-500 dark:text-gray-400 gap-2">
+                          <span className="inline-flex items-center">
+                            <Heart className="w-3 h-3 mr-1" /> {photo.votes}
+                          </span>
+                          <span className="inline-flex items-center">
+                            <MessageCircle className="w-3 h-3 mr-1" /> {photo.comments}
+                          </span>
+                        </div>
+                      </div>
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300">
+                        {photo.category}
+                      </span>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           </div>
         ) : (
           <div className="relative bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-3xl shadow-xl p-12 text-center border border-gray-100 dark:border-gray-700 max-w-2xl mx-auto">
@@ -439,14 +407,7 @@ export default function GalleryPage() {
           </div>
         )}
 
-        {selectedPhoto && (
-          <SharingWizard
-            isOpen={isSharingWizardOpen}
-            onClose={() => setIsSharingWizardOpen(false)}
-            photoUrl={selectedPhoto.url}
-            onShare={handleShare}
-          />
-        )}
+
       </div>
 
       {/* Edit Modal */}
