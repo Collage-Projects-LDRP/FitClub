@@ -61,7 +61,7 @@ const getExitState = (type: string) => {
 // Helper functions for transitions
 const getTransitionInitial = (type: string, currentStep: number) => {
   if (currentStep !== 0) return { opacity: 1 };
-  
+
   switch (type) {
     case 'fade':
       return { opacity: 0 };
@@ -111,8 +111,9 @@ const getTransitionExit = (type: string) => {
 };
 
 import { Trophy, ArrowUp, PlayCircle, Image as ImageIcon, Music, Film, X, Check, ChevronLeft, ChevronRight, Sparkles, Loader2, Dumbbell, Upload, QrCode as QrCodeIcon, Instagram, MessageSquare, Download, Play, ZoomIn, RotateCw, Award, Zap, Activity, Pause, Volume2, VolumeX } from 'lucide-react';
-import Image from "next/image";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Logo } from '@/components/logo';
+import Image from "next/image";
 import { IntroAnimation } from "./components/reel-animation";
 import { QRCode, QRCodePreview } from "./components/qr-code";
 
@@ -211,65 +212,65 @@ const PersonalBestReelCreator = () => {
       icon: <Upload className="h-6 w-6 text-gray-400" />
     },
     // Add some sample photos if userPhotos is empty
-    ...(userPhotos && userPhotos.length > 0 
+    ...(userPhotos && userPhotos.length > 0
       ? userPhotos.map(photo => ({
-          id: photo.id,
-          url: photo.url,
-          aspectRatio: photo.aspectRatio || '9/16',
-          isUpload: false,
-          label: photo.category || 'Photo',
-          date: new Date(photo.createdAt).toLocaleDateString()
-        }))
+        id: photo.id,
+        url: photo.url,
+        aspectRatio: photo.aspectRatio || '9/16',
+        isUpload: false,
+        label: photo.category || 'Photo',
+        date: new Date(photo.createdAt).toLocaleDateString()
+      }))
       : [
-          {
-            id: 'sample1',
-            url: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=600&fit=crop',
-            aspectRatio: '9/16',
-            isUpload: false,
-            label: 'Workout',
-            date: new Date().toLocaleDateString()
-          },
-          {
-            id: 'sample2',
-            url: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=400&h=600&fit=crop',
-            aspectRatio: '9/16',
-            isUpload: false,
-            label: 'Progress',
-            date: new Date(Date.now() - 86400000).toLocaleDateString()
-          },
-          {
-            id: 'sample3',
-            url: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&h=600&fit=crop',
-            aspectRatio: '9/16',
-            isUpload: false,
-            label: 'Workout',
-            date: new Date(Date.now() - 85400000).toLocaleDateString()
-          },
-          {
-            id: 'sample4',
-            url: 'https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=400&h=600&fit=crop',
-            aspectRatio: '9/16',
-            isUpload: false,
-            label: 'Workout',
-            date: new Date(Date.now() - 84400000).toLocaleDateString()
-          },
-          {
-            id: 'sample5',
-            url: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=400&h=600&fit=crop',
-            aspectRatio: '9/16',
-            isUpload: false,
-            label: 'Workout',
-            date: new Date(Date.now() - 83400000).toLocaleDateString()
-          },
-          {
-            id: 'sample6',
-            url: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=600&fit=crop',
-            aspectRatio: '9/16',
-            isUpload: false,
-            label: 'Workout',
-            date: new Date(Date.now() - 82400000).toLocaleDateString()
-          },
-        ])
+        {
+          id: 'sample1',
+          url: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=600&fit=crop',
+          aspectRatio: '9/16',
+          isUpload: false,
+          label: 'Workout',
+          date: new Date().toLocaleDateString()
+        },
+        {
+          id: 'sample2',
+          url: 'https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=400&h=600&fit=crop',
+          aspectRatio: '9/16',
+          isUpload: false,
+          label: 'Progress',
+          date: new Date(Date.now() - 86400000).toLocaleDateString()
+        },
+        {
+          id: 'sample3',
+          url: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&h=600&fit=crop',
+          aspectRatio: '9/16',
+          isUpload: false,
+          label: 'Workout',
+          date: new Date(Date.now() - 85400000).toLocaleDateString()
+        },
+        {
+          id: 'sample4',
+          url: 'https://images.unsplash.com/photo-1605296867304-46d5465a13f1?w=400&h=600&fit=crop',
+          aspectRatio: '9/16',
+          isUpload: false,
+          label: 'Workout',
+          date: new Date(Date.now() - 84400000).toLocaleDateString()
+        },
+        {
+          id: 'sample5',
+          url: 'https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=400&h=600&fit=crop',
+          aspectRatio: '9/16',
+          isUpload: false,
+          label: 'Workout',
+          date: new Date(Date.now() - 83400000).toLocaleDateString()
+        },
+        {
+          id: 'sample6',
+          url: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&h=600&fit=crop',
+          aspectRatio: '9/16',
+          isUpload: false,
+          label: 'Workout',
+          date: new Date(Date.now() - 82400000).toLocaleDateString()
+        },
+      ])
   ];
 
   // Define music track type with required properties
@@ -355,7 +356,7 @@ const PersonalBestReelCreator = () => {
     label?: string;
     date?: string;
   }>>([]);
-  
+
   // Keep the existing personalBestPhoto state for backward compatibility
   const [personalBestPhoto, setPersonalBestPhoto] = useState({
     url: '',
@@ -375,7 +376,7 @@ const PersonalBestReelCreator = () => {
     imageToImage: 'fade',
     imageToOutro: 'fade'
   });
-  
+
   // Track which transition is being previewed and a key to force remount
   const [selectedTransitionType, setSelectedTransitionType] = useState<keyof typeof transitions>('introToImage');
   const [transitionKey, setTransitionKey] = useState(0);
@@ -587,25 +588,29 @@ const PersonalBestReelCreator = () => {
   const introOptions = [
     {
       id: 'transform',
-      subtitle: 'Down to Up Annimation',
+      title: 'Transform',
+      subtitle: 'Down to Up Animation',
       icon: <Sparkles className="w-4 h-4" />,
       color: 'from-purple-500 to-pink-500'
     },
     {
       id: 'progress',
-      subtitle: 'Small to Big Annimation',
+      title: 'Progress',
+      subtitle: 'Small to Big Animation',
       icon: <PlayCircle className="w-4 h-4" />,
       color: 'from-blue-500 to-cyan-500'
     },
     {
       id: 'personal_best',
+      title: 'Success',
       subtitle: 'Personal Best Animation',
       icon: <Film className="w-4 h-4" />,
       color: 'from-green-500 to-teal-500'
     },
     {
       id: 'custom',
-      subtitle: 'Big to Small Annimation',
+      title: 'Custom',
+      subtitle: 'Big to Small Animation',
       icon: <Upload className="w-4 h-4" />,
       color: 'from-yellow-500 to-orange-500'
     }
@@ -826,7 +831,7 @@ const PersonalBestReelCreator = () => {
   const [hasFinished, setHasFinished] = useState(false);
 
   // Define types for sequence steps
-  type SequenceStep = 
+  type SequenceStep =
     | { type: 'intro' | 'details' | 'after' | 'outro'; duration: number }
     | { type: 'photo'; duration: number; photo: { id: string; url: string; type: 'upload' | 'gallery'; label?: string; date?: string } };
 
@@ -868,13 +873,13 @@ const PersonalBestReelCreator = () => {
           // Create and play new audio
           currentAudio = new Audio(reelAssets.music.audioUrl);
           currentAudio.play().catch(e => console.error('Error playing music:', e));
-          
+
           // Update audio state
           setAudio(currentAudio);
           setCurrentTrackId(reelAssets.music.id);
           setIsMusicPlaying(true);
         }
-        
+
         // Start the preview
         setIsPlaying(true);
       }, 100);
@@ -888,7 +893,7 @@ const PersonalBestReelCreator = () => {
           currentAudio.src = '';
         }
         setIsMusicPlaying(false);
-        
+
         // Clear preview interval if it exists
         if (sequenceInterval.current) {
           clearInterval(sequenceInterval.current);
@@ -1060,11 +1065,10 @@ const PersonalBestReelCreator = () => {
                         setSelectedTransitionType('introToImage');
                         setTransitionKey(prev => prev + 1);
                       }}
-                      className={`flex flex-col items-center justify-center p-3 rounded-lg border ${
-                        transitions.introToImage === transition.id
-                          ? 'border-blue-500 bg-blue-500/10'
-                          : 'border-gray-700 hover:border-gray-600'
-                      } transition-colors`}
+                      className={`flex flex-col items-center justify-center p-3 rounded-lg border ${transitions.introToImage === transition.id
+                        ? 'border-blue-500 bg-blue-500/10'
+                        : 'border-gray-700 hover:border-gray-600'
+                        } transition-colors`}
                     >
                       <div className="h-8 w-8 flex items-center justify-center mb-1">
                         {transition.icon}
@@ -1120,11 +1124,10 @@ const PersonalBestReelCreator = () => {
                         setSelectedTransitionType('imageToOutro');
                         setTransitionKey(prev => prev + 1);
                       }}
-                      className={`flex flex-col items-center justify-center p-3 rounded-lg border ${
-                        transitions.imageToOutro === transition.id
-                          ? 'border-blue-500 bg-blue-500/10'
-                          : 'border-gray-700 hover:border-gray-600'
-                      } transition-colors`}
+                      className={`flex flex-col items-center justify-center p-3 rounded-lg border ${transitions.imageToOutro === transition.id
+                        ? 'border-blue-500 bg-blue-500/10'
+                        : 'border-gray-700 hover:border-gray-600'
+                        } transition-colors`}
                     >
                       <div className="h-8 w-8 flex items-center justify-center mb-1">
                         {transition.icon}
@@ -1328,11 +1331,10 @@ const PersonalBestReelCreator = () => {
                           }
                         }
                       }}
-                      className={`group relative aspect-[9/16] rounded-xl overflow-hidden cursor-pointer transition-all duration-300 ${
-                        !photo.isUpload && selectedPhotos.some(p => p.url === photo.url)
-                          ? 'ring-2 ring-blue-500 ring-offset-2 ring-offset-gray-900 transform scale-[1.02]'
-                          : 'hover:scale-[1.02] hover:shadow-lg'
-                      }`}
+                      className={`group relative aspect-[9/16] rounded-xl overflow-hidden cursor-pointer transition-all duration-300 ${!photo.isUpload && selectedPhotos.some(p => p.url === photo.url)
+                        ? 'ring-2 ring-blue-500 ring-offset-2 ring-offset-gray-900 transform scale-[1.02]'
+                        : 'hover:scale-[1.02] hover:shadow-lg'
+                        }`}
                     >
                       {photo.isUpload ? (
                         <div className="absolute inset-0 border-2 border-dashed border-gray-500 rounded-xl flex flex-col items-center justify-center p-4 hover:border-blue-500 transition-colors bg-gray-900/50">
@@ -1536,82 +1538,82 @@ const PersonalBestReelCreator = () => {
       case 'outro':
         return (
           <div className="space-y-6">
-              <div className="space-y-3">
-                <h3 className="text-sm font-medium text-gray-300">Outro Style</h3>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full">
-                  {outroOptions.map((option) => {
-                    const isSelected = reelAssets.outro.animation === option.id;
-                    const displayTitle = option.title === 'Thank You' ? 'THANKS FOR WATCHING' : option.title.toUpperCase();
-                    const displaySubtitle = option.subtitle === 'Call to action' ? 'SUBSCRIBE FOR MORE' : option.subtitle.toUpperCase();
-                    
-                    return (
-                      <div
-                        key={option.id}
-                        onClick={() => setReelAssets(prev => ({
-                          ...prev,
-                          outro: {
-                            ...prev.outro,
-                            animation: option.id,
-                            title: displayTitle,
-                            subtitle: displaySubtitle,
-                            icon: option.icon,
-                            color: option.color
-                          }
-                        }))}
-                        className={`cursor-pointer transition-all ${isSelected ? 'ring-2 ring-blue-500 rounded-lg' : 'opacity-90 hover:opacity-100'}`}
-                      >
-                        <div className={`
+            <div className="space-y-3">
+              <h3 className="text-sm font-medium text-gray-300">Outro Style</h3>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full">
+                {outroOptions.map((option) => {
+                  const isSelected = reelAssets.outro.animation === option.id;
+                  const displayTitle = option.title === 'Thank You' ? 'THANKS FOR WATCHING' : option.title.toUpperCase();
+                  const displaySubtitle = option.subtitle === 'Call to action' ? 'SUBSCRIBE FOR MORE' : option.subtitle.toUpperCase();
+
+                  return (
+                    <div
+                      key={option.id}
+                      onClick={() => setReelAssets(prev => ({
+                        ...prev,
+                        outro: {
+                          ...prev.outro,
+                          animation: option.id,
+                          title: displayTitle,
+                          subtitle: displaySubtitle,
+                          icon: option.icon,
+                          color: option.color
+                        }
+                      }))}
+                      className={`cursor-pointer transition-all ${isSelected ? 'ring-2 ring-blue-500 rounded-lg' : 'opacity-90 hover:opacity-100'}`}
+                    >
+                      <div className={`
                           bg-gray-800 rounded-lg overflow-hidden w-full aspect-[9/16]
                           ${isSelected ? 'ring-2 ring-blue-400' : ''}
                         `}>
-                          <div className={`w-full h-full relative  bg-gradient-to-br`}>
-                            {option.id === '5' || option.id === '6' ? (
-                              // Special preview for options 5 and 6
-                              <div className="absolute inset-0 flex items-center justify-center p-2">
-                                <div className="relative w-full h-full">
-                                  <QRCode
-                                    qrCodePath={option.id === '6' ? '/1qr-code.png' : '/qr-code.png'}
-                                    title={displayTitle}
-                                    subtitle={displaySubtitle}
-                                    outroId={option.id}
-                                    className="w-full h-full"
-                                  />
-                                </div>
+                        <div className={`w-full h-full relative  bg-gradient-to-br`}>
+                          {option.id === '5' || option.id === '6' ? (
+                            // Special preview for options 5 and 6
+                            <div className="absolute inset-0 flex items-center justify-center p-2">
+                              <div className="relative w-full h-full">
+                                <QRCode
+                                  qrCodePath={option.id === '6' ? '/1qr-code.png' : '/qr-code.png'}
+                                  title={displayTitle}
+                                  subtitle={displaySubtitle}
+                                  outroId={option.id}
+                                  className="w-full h-full"
+                                />
                               </div>
-                            ) : (
-                              // Standard preview for other options
-                              <div className="h-full flex flex-col items-center justify-center p-2">
-                                <div className="relative w-16 h-16 mb-2">
+                            </div>
+                          ) : (
+                            // Standard preview for other options
+                            <div className="h-full flex flex-col items-center justify-center p-2">
+                              <div className="relative w-16 h-16 mb-2">
+                                <Image
+                                  src="/allmax.png"
+                                  alt="Allmax"
+                                  fill
+                                  className="object-contain"
+                                />
+                              </div>
+                              <div className="text-center px-2">
+                                <p className="text-xs font-medium text-white mb-1 line-clamp-1">{displayTitle}</p>
+                                <p className="text-[10px] text-gray-300 line-clamp-1">{displaySubtitle}</p>
+                              </div>
+                              <div className="mt-2 bg-white/90 p-1 rounded">
+                                <div className="relative w-10 h-10">
                                   <Image
-                                    src="/allmax.png"
-                                    alt="Allmax"
+                                    src={option.qrCode || '/qr-code.png'}
+                                    alt="QR Code"
                                     fill
                                     className="object-contain"
                                   />
                                 </div>
-                                <div className="text-center px-2">
-                                  <p className="text-xs font-medium text-white mb-1 line-clamp-1">{displayTitle}</p>
-                                  <p className="text-[10px] text-gray-300 line-clamp-1">{displaySubtitle}</p>
-                                </div>
-                                <div className="mt-2 bg-white/90 p-1 rounded">
-                                  <div className="relative w-10 h-10">
-                                    <Image
-                                      src={option.qrCode || '/qr-code.png'}
-                                      alt="QR Code"
-                                      fill
-                                      className="object-contain"
-                                    />
-                                  </div>
-                                </div>
                               </div>
-                            )}
-                          </div>
+                            </div>
+                          )}
                         </div>
                       </div>
-                    );
-                  })}
-                </div>
+                    </div>
+                  );
+                })}
               </div>
+            </div>
 
             <div className="space-y-3">
               <h3 className="text-sm font-medium text-gray-300">Background Color</h3>
@@ -1627,11 +1629,10 @@ const PersonalBestReelCreator = () => {
                         color: color.value // Also update the text color to match
                       }
                     }))}
-                    className={`relative h-12 rounded-lg overflow-hidden cursor-pointer transition-transform flex items-center justify-center ${
-                      reelAssets.outro.bgColor === color.value 
-                        ? 'ring-2 ring-white ring-offset-2 ring-offset-gray-900 scale-105' 
-                        : 'hover:scale-105'
-                    }`}
+                    className={`relative h-12 rounded-lg overflow-hidden cursor-pointer transition-transform flex items-center justify-center ${reelAssets.outro.bgColor === color.value
+                      ? 'ring-2 ring-white ring-offset-2 ring-offset-gray-900 scale-105'
+                      : 'hover:scale-105'
+                      }`}
                   >
                     <div className={`absolute inset-0 ${color.bg} flex items-center justify-center`}>
                       {index === 0 && (
@@ -1680,7 +1681,7 @@ const PersonalBestReelCreator = () => {
                 </CardHeader>
                 <CardContent className="flex-1 p-0 overflow-auto flex items-center justify-center">
                   <div className="w-full max-w-[300px] mx-auto p-4">
-                  {activeTab === 'transitions' && (
+                    {activeTab === 'transitions' && (
                       <div className="space-y-6">
                         {/* Single Transition Preview */}
                         <div className="bg-gray-800/50 rounded-xl p-6 border border-gray-700">
@@ -1715,7 +1716,7 @@ const PersonalBestReelCreator = () => {
                                   </div>
                                 </motion.div>
                               )}
-                              
+
                               {/* {selectedTransitionType === 'imageToImage' && (
                                 <motion.div
                                   key="image-to-image"
@@ -1740,7 +1741,7 @@ const PersonalBestReelCreator = () => {
                                   </div>
                                 </motion.div>
                               )} */}
-                              
+
                               {selectedTransitionType === 'imageToOutro' && (
                                 <motion.div
                                   key="image-to-outro"
@@ -1808,8 +1809,8 @@ const PersonalBestReelCreator = () => {
                             // Multiple photos - grid view
                             <div className="grid grid-cols-2 gap-3">
                               {selectedPhotos.map((photo, index) => (
-                                <div 
-                                  key={`preview-${photo.id}-${index}`} 
+                                <div
+                                  key={`preview-${photo.id}-${index}`}
                                   className="relative group aspect-square rounded-lg overflow-hidden border border-gray-700"
                                 >
                                   <div className="absolute top-2 left-2 w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center text-white text-xs font-bold z-10">
@@ -1871,13 +1872,13 @@ const PersonalBestReelCreator = () => {
                                 priority
                               />
                               <div className="w-18 h-18 mb-4 flex items-center justify-center flex-col">Powered by
-                              <Image
-                                src="/fitclub-logo.png" 
-                                alt="FitClub Logo"
-                                width={160}
-                                height={160}
-                                className="object-contain"
-                              />
+                                <Image
+                                  src="/fitclub-logo.png"
+                                  alt="FitClub Logo"
+                                  width={160}
+                                  height={160}
+                                  className="object-contain"
+                                />
                               </div>
                             </motion.div>
                           </motion.div>
@@ -2244,14 +2245,8 @@ const PersonalBestReelCreator = () => {
                             height={220}
                             className="object-contain drop-shadow-lg"
                           />
-                          <div className="w-28 h-28 mb-4 flex items-center justify-center flex-col">Powered by
-                          <Image
-                            src="/fitclub-logo.png"
-                            alt="FitClub Logo"
-                            width={120}
-                            height={120}
-                            className="object-contain"
-                          />
+                          <div className="mb-4 flex items-center justify-center">
+                            <Logo size="sm" isClickable={false} showUnderline={false} />
                           </div>
                         </motion.div>
                       </div>
@@ -2343,9 +2338,9 @@ const PersonalBestReelCreator = () => {
                             />
                           </motion.div>
                         </AnimatePresence>
-                        
-                          {/* Gradient Overlay */}
-                          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/90">
+
+                        {/* Gradient Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/90">
                           {/* Content container */}
                           <div className="relative h-full flex flex-col justify-end p-6 text-white">
                             {/* Personal Best Badge - Top Right */}
@@ -2508,7 +2503,7 @@ const PersonalBestReelCreator = () => {
                     {/* Play Again Button - Shows when outro is displayed */}
                     {!isPlaying && activeTab === 'outro' && (
                       <div className="absolute inset-0 flex items-center justify-center z-30">
-                        <Button 
+                        <Button
                           onClick={() => {
                             setCurrentStep(0);
                             // Reset and restart music if available
@@ -2537,10 +2532,10 @@ const PersonalBestReelCreator = () => {
 
                     <AnimatePresence mode="wait">
                       {((isPlaying && sequence[currentStep]?.type === 'outro' && !hasFinished) || (!isPlaying && activeTab === 'outro')) && reelAssets.outro.animation && (
-                        <motion.div 
+                        <motion.div
                           key="outro-content"
-                          className={`absolute inset-0 flex flex-col items-center justify-center p-4 ${reelAssets.outro.bgColor 
-                            ? `bg-gradient-to-br ${reelAssets.outro.bgColor}` 
+                          className={`absolute inset-0 flex flex-col items-center justify-center p-4 ${reelAssets.outro.bgColor
+                            ? `bg-gradient-to-br ${reelAssets.outro.bgColor}`
                             : 'bg-black'}`}
                           initial={getInitialState(transitions.imageToOutro)}
                           animate={getAnimateState(transitions.imageToOutro)}

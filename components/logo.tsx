@@ -26,7 +26,7 @@ export function Logo({
     const content = (
         <div className={cn("flex flex-col items-start leading-none", className)}>
             <span className={cn(
-                "font-black tracking-tighter text-white uppercase italic",
+                "font-black tracking-tighter text-white uppercase italic pr-1.5",
                 sizeClasses[size],
                 textClassName
             )}>
